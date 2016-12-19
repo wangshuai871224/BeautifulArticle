@@ -8,6 +8,7 @@ import com.example.dllo.hodgepodge.base.BaseFragment;
  */
 
 public class VideoFragment extends BaseFragment {
+    // 帅哥说请客
     @Override
     protected int setLayout() {
         return R.layout.fragment_video;
