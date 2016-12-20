@@ -32,6 +32,10 @@ public class CommonVH extends RecyclerView.ViewHolder{
         return (T) view;
     }
 
+    public View getItemView() {
+        return mItemView;
+    }
+
     // listView的viewHolder
     public static CommonVH listViewHolder(View view, ViewGroup viewGroup, int layoutId) {
         CommonVH commonVH;

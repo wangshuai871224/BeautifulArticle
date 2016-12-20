@@ -6,6 +6,8 @@ import android.support.v4.view.ViewPager;
 
 import com.example.dllo.hodgepodge.R;
 import com.example.dllo.hodgepodge.base.BaseActivity;
+import com.example.dllo.hodgepodge.tools.HttpUtil;
+import com.example.dllo.hodgepodge.tools.OkHttpManager;
 
 public class MainActivity extends BaseActivity {
 
