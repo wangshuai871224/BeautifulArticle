@@ -27,7 +27,7 @@ public class HaveMatterFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        HaveMatterAdatper mAdapter = new HaveMatterAdatper();
+        HaveMatterAdapter mAdapter = new HaveMatterAdapter(getChildFragmentManager());
     }
 
 

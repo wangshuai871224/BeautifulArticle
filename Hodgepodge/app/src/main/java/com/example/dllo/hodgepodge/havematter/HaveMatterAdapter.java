@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 /**
  * Created by TaiF on 16/12/20.
  */
-public class HaveMatterAdatper extends FragmentPagerAdapter{
+public class HaveMatterAdapter extends FragmentPagerAdapter{
     private BeanTab bean;
     private String title = "Daily";
 
@@ -16,7 +16,7 @@ public class HaveMatterAdatper extends FragmentPagerAdapter{
         notifyDataSetChanged();
     }
 
-    public HaveMatterAdatper(FragmentManager fm) {
+    public HaveMatterAdapter(FragmentManager fm) {
         super(fm);
     }
 
