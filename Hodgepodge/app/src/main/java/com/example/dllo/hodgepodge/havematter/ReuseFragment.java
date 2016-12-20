@@ -4,13 +4,13 @@ import com.example.dllo.hodgepodge.R;
 import com.example.dllo.hodgepodge.base.BaseFragment;
 
 /**
- * Created by TaiF on 16/12/19.
+ * Created by TaiF on 16/12/20.
  */
-    
-public class HaveMatterFragment extends BaseFragment {
+
+public class ReuseFragment extends BaseFragment {
     @Override
     protected int setLayout() {
-        return R.layout.fragment_havematter;
+        return R.layout.fragment_reuse;
     }
 
     @Override
@@ -22,6 +22,4 @@ public class HaveMatterFragment extends BaseFragment {
     protected void initData() {
 
     }
-
-
 }
