@@ -10,7 +10,7 @@ import com.example.dllo.hodgepodge.base.BaseFragment;
 public class HaveMatterFragment extends BaseFragment {
     @Override
     protected int setLayout() {
-        return R.layout.fragment_location;
+        return R.layout.fragment_havematter;
     }
 
     @Override
