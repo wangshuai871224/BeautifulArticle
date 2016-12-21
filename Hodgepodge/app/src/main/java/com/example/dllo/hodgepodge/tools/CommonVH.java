@@ -1,5 +1,6 @@
 package com.example.dllo.hodgepodge.tools;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 /**
  * Created by dllo on 16/12/19.
@@ -16,9 +19,11 @@ public class CommonVH extends RecyclerView.ViewHolder{
 
     private View mItemView;
     private SparseArray<View> mViews;// key值固定为int类型的hashmap
+    private Context mContext;
 
-    public CommonVH(View itemView) {
+    public CommonVH(View itemView, Context context) {
         super(itemView);
+        mContext = context;
         mItemView = itemView;
         mViews = new SparseArray<>();
     }
@@ -32,12 +37,16 @@ public class CommonVH extends RecyclerView.ViewHolder{
         return (T) view;
     }
 
+    public View getItemView() {
+        return mItemView;
+    }
+
     // listView的viewHolder
     public static CommonVH listViewHolder(View view, ViewGroup viewGroup, int layoutId) {
         CommonVH commonVH;
         if (view == null) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(layoutId, viewGroup, false);
-            commonVH = new CommonVH(view);
+            commonVH = new CommonVH(view, viewGroup.getContext());
             view.setTag(commonVH);
         }else {
             commonVH = (CommonVH) view.getTag();
@@ -61,6 +70,12 @@ public class CommonVH extends RecyclerView.ViewHolder{
 
         ImageView imageView = getView(id);
         imageView.setImageResource(imgId);
+        return this;
+    }
+
+    public CommonVH setGlideImage(int id, String url){
+        ImageView imageView = getView(id);
+        Glide.with(mContext).load(url).into(imageView);
         return this;
     }
 
