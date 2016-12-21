@@ -1,32 +1,22 @@
 package com.example.dllo.hodgepodge.pictorial;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dllo.hodgepodge.R;
 import com.example.dllo.hodgepodge.base.BaseFragment;
 import com.example.dllo.hodgepodge.listener.NetCallBack;
-import com.example.dllo.hodgepodge.tools.CommonVH;
 import com.example.dllo.hodgepodge.tools.OkHttpManager;
 import com.example.dllo.hodgepodge.tools.URLValues;
-import com.google.gson.Gson;
 import com.wirelesspienetwork.overview.misc.Utilities;
 import com.wirelesspienetwork.overview.model.OverviewAdapter;
 import com.wirelesspienetwork.overview.model.ViewHolder;
 import com.wirelesspienetwork.overview.views.Overview;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * Created by dllo on 16/12/19.
@@ -65,10 +55,14 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
             e.printStackTrace();
         }
 
+
         OkHttpManager.getInstance().get(URLValues.PICTORIAL_URL, PictorialBean.class, new NetCallBack<PictorialBean>() {
             @Override
             public void onResponse(PictorialBean bean) {
 
+//                PictorialAdapter adapter = new PictorialAdapter();
+//                adapter.setBean(bean);
+//                mRecentView.setTaskStack(adapter);
             }
 
             @Override
@@ -92,15 +86,12 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
         mVisible = true;
 
         ArrayList<Integer> models = new ArrayList<>();
-        for(int i = 0; i < 10; ++i)
+        for(int i = 0; i < 30; ++i)
         {
             Random random = new Random();
             random.setSeed(i);
             models.add(0xffffffff);
         }
-        
-
-
         final OverviewAdapter stack = new OverviewAdapter<ViewHolder<View, Integer>, Integer>(models) {
             @Override
             public ViewHolder onCreateViewHolder(Context context, ViewGroup parent) {
