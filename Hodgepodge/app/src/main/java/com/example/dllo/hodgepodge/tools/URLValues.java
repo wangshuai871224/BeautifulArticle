@@ -30,9 +30,9 @@ public class URLValues {
     // 马瑞庭
 
     // 系列post 请求接口
-    private static final String SERIES_URL = "http://app.vmoiver.com/apiv3/series/getList";
+    public static final String SERIES_URL = "http://app.vmoiver.com/apiv3/series/getList";
     // 最新post 请求接口
-    private static final String NEWEST_URL = "http://app.vmoiver.com/apiv3/post/getPostByTab";
+    public static final String NEWEST_URL = "http://app.vmoiver.com/apiv3/post/getPostByTab";
     // 最新post 请求, 轮播图接口
-    private static final String NEWEST_BANNER_URL = "http://app.vmoiver.com/apiv3/index/getBanner";
+    public static final String NEWEST_BANNER_URL = "http://app.vmoiver.com/apiv3/index/getBanner";
 }

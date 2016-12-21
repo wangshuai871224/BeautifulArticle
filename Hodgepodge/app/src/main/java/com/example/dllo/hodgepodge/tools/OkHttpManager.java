@@ -52,7 +52,7 @@ public class OkHttpManager {
             builder.add(s, body.get(s));
         }
         FormBody formBody = builder.build();
-        Request request = new Request.Builder().url(url).build();
+        Request request = new Request.Builder().url(url).post(formBody).build();
         postOkHttp(request, mClass, netCallBack);
     }
 
