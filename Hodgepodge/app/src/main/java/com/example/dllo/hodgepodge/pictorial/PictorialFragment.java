@@ -41,9 +41,9 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
     @Override
     protected void initData() {
         mRecentView.setCallbacks(this);
-        mRecentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+//        mRecentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+//                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+//                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         try {
             Utilities.setShadowProperty("ambientRatio", String.valueOf(1.5f));
         } catch (IllegalAccessException e) {
