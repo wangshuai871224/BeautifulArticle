@@ -52,7 +52,7 @@ public class OkHttpManager {
             builder.add(s, body.get(s));
         }
         FormBody formBody = builder.build();
-        Request request = new Request.Builder().url(url).build();
+        Request request = new Request.Builder().url(url).post(formBody).build();
         postOkHttp(request, mClass, netCallBack);
     }
 
@@ -96,6 +96,7 @@ public class OkHttpManager {
                     T bean = mGson.fromJson(result, mClass);
                     mHandler.post(new ResponseRunnable<T>(callBack, bean));
                 }catch (Exception exception) {
+                    exception.printStackTrace();
                     mHandler.post(new ErrorRunnable<T>(callBack, exception));
                 }
             }
@@ -107,7 +108,7 @@ public class OkHttpManager {
 
         protected NetCallBack<T> mNetCallBack;
 
-        public OkHttpRunnable(NetCallBack<T> netCallBack) {
+        public OkHttpRunnable(NetCallBack netCallBack) {
             mNetCallBack = netCallBack;
         }
     }
@@ -116,7 +117,7 @@ public class OkHttpManager {
     class ResponseRunnable<T> extends OkHttpRunnable<T> {
 
         private T bean;
-        public ResponseRunnable(NetCallBack<T> netCallBack, T bean) {
+        public ResponseRunnable(NetCallBack netCallBack, T bean) {
             super(netCallBack);
             this.bean = bean;
         }
@@ -130,7 +131,7 @@ public class OkHttpManager {
     class ErrorRunnable<T> extends OkHttpRunnable<T> {
 
         private Exception mException;
-        public ErrorRunnable(NetCallBack<T> netCallBack, Exception exception) {
+        public ErrorRunnable(NetCallBack netCallBack, Exception exception) {
             super(netCallBack);
             this.mException = exception;
         }
