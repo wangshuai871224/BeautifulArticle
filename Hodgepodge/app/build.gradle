@@ -31,5 +31,8 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'com.google.code.gson:gson:2.8.0'
     compile project(path: ':lib')
+    // m加
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.youth.banner:banner:1.4.1'
+    compile 'com.github.userswlwork:pull-to-refresh:1.0.0'
 }

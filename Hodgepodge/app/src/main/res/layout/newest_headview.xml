@@ -3,11 +3,9 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-<com.handmark.pulltorefresh.library.PullToRefreshListView
+<com.youth.banner.Banner
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/fragment_newest_lv"
-    android:divider="@null"
-    android:dividerHeight="0dp"/>
-
+    android:layout_height="@dimen/m_margin_two_hundred"
+    android:id="@+id/newest_headview_banner"
+    android:scaleType="fitXY"/>
 </LinearLayout>

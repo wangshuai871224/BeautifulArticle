@@ -22,14 +22,22 @@ public class FmNewestAdapter extends BaseAdapter {
 
     private NewestBean mNewestBean;
     private List<NewestBean.DataBean> mList;
+    private boolean flag = false;
 
+    public void setDown(boolean flag){
+        this.flag = flag;
+    }
     public void setNewestBean(NewestBean newestBean) {
-        mNewestBean = newestBean;
-        mList = mNewestBean.getData();
+        if (flag){
+            // 加载完成后, 把数据加到集合里
+            mNewestBean.getData().addAll(newestBean.getData());
+            mList = mNewestBean.getData();
+        } else {
+            mNewestBean = newestBean;
+            mList = mNewestBean.getData();
+        }
         notifyDataSetChanged();
     }
-
-
 
     @Override
     public int getCount() {
@@ -48,7 +56,6 @@ public class FmNewestAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        Context context = viewGroup.getContext();
         CommonVH commonVH = CommonVH.listViewHolder(view, viewGroup, R.layout.item_newest_lv);
         commonVH.setText(R.id.item_newest_title, mList.get(i).getTitle());
         if (Integer.parseInt(mList.get(i).getDuration()) % 60 > 9) {
