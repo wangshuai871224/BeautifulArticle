@@ -38,8 +38,7 @@ public abstract class OverviewAdapter<VH extends ViewHolder, Model extends Objec
     //这个只是单纯用来计数的
     List<Model> mItems = new ArrayList <>();
 
-    public OverviewAdapter()
-    {
+    public OverviewAdapter() {
 
     }
 

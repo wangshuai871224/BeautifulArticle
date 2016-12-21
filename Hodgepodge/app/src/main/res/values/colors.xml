@@ -6,4 +6,7 @@
     <color name="black">#000000</color>
     <color name="m_write">#ffffff</color>
     <color name="m_alpah">#40000000</color>
+    <color name="w_black">#000000</color>
+    <color name="w_white">#ffffff</color>
+    <color name="w_gray">#FFA7A3A3</color>
 </resources>

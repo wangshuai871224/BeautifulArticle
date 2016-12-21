@@ -31,8 +31,7 @@ public class ViewHolder<V extends View, Model extends Object> {
         return mLastPosition;
     }
 
-    public OverviewCard getContainer()
-    {
+    public OverviewCard getContainer() {
         return mContainer;
     }
 

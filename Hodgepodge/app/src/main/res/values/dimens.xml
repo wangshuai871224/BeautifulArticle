@@ -7,4 +7,8 @@
     <dimen name="m_size_ten">10sp</dimen>
     <dimen name="m_margin_ten">10dp</dimen>
     <dimen name="m_margin_two_hundred">200dp</dimen>
+    <dimen name="w_margin_ten">10dp</dimen>
+    <dimen name="w_text_size_normal">15dp</dimen>
+    <dimen name="w_margin_twenty">20dp</dimen>
+    <dimen name="w_text_size_black">30dp</dimen>
 </resources>
