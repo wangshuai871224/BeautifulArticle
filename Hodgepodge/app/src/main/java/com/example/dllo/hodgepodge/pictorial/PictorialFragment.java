@@ -98,7 +98,7 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
             random.setSeed(i);
             models.add(0xffffffff);
         }
-
+        
 
 
         final OverviewAdapter stack = new OverviewAdapter<ViewHolder<View, Integer>, Integer>(models) {
