@@ -132,7 +132,7 @@ public class NewestFragment extends BaseFragment {
         mRefreshListView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载更多...");
 
         mRefreshListView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新...");
-        mRefreshListView.getLoadingLayoutProxy(true, false).setRefreshingLabel("正在拼命加载...");
+        mRefreshListView.getLoadingLayoutProxy(true, false).setRefreshingLabel("正在拼命刷新数据...");
         mRefreshListView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开加载更多...");
     }
 
