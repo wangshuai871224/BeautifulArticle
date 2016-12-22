@@ -52,7 +52,12 @@ public class VideoFragment extends BaseFragment {
         adapter.setFragments(fragments);
         mVp.setAdapter(adapter);
         mTab.setupWithViewPager(mVp);
+        // 给tab下面的设置选择标签指示的颜色
         mTab.setSelectedTabIndicatorColor(Color.WHITE);
+        // 设置tab的选择模式
+        mTab.setTabMode(TabLayout.MODE_SCROLLABLE);
+        // 给tab的title 设置颜色
+        mTab.setTabTextColors(Color.GRAY, Color.WHITE);
     }
 
 
