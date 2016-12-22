@@ -2,9 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/item_newest"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="@dimen/m_margin_two_hundred">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:id="@+id/item_newest_image"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/m_alpah">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/m_write"
+                android:textSize="@dimen/m_size_fifteen"
+                android:layout_centerInParent="true"
+                android:id="@+id/item_newest_title"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/m_size_ten"
+                android:textColor="@color/m_write"
+                android:id="@+id/item_newest_catename"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/m_margin_ten"
+                android:layout_marginBottom="@dimen/m_margin_ten"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 
 </RelativeLayout>
