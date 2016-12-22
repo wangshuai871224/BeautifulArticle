@@ -9,7 +9,7 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tb_havematter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:background="#1b1b1b"/>
 
 

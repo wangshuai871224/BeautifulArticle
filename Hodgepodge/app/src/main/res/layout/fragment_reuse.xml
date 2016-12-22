@@ -4,26 +4,36 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/ll_popup"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
         android:background="#393939">
         <TextView
+            android:id="@+id/tv_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_gravity="center"
+            android:layout_centerVertical="true"
             android:textColor="#fff"
             android:textSize="15dp"
             android:text="全部"/>
         <ImageView
+            android:id="@+id/iv_down"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="290dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/xia"/>
-    </LinearLayout>
+            android:layout_marginStart="320dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/down"/>
+        <ImageView
+            android:id="@+id/iv_upward"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="320dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/upward"
+            android:visibility="gone"/>
+    </RelativeLayout>
 
     <ListView
         android:layout_width="match_parent"
