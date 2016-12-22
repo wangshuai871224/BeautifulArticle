@@ -40,4 +40,6 @@ public class URLValues {
     public static final String NEWEST_URL = "http://app.vmoiver.com/apiv3/post/getPostByTab";
     // 最新post 请求, 轮播图接口
     public static final String NEWEST_BANNER_URL = "http://app.vmoiver.com/apiv3/index/getBanner";
+    
+    public static String NEWEST_VIDEO_URL = "http://app.vmoiver.com/apiv3/post/view";
 }

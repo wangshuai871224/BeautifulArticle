@@ -9,4 +9,5 @@
     <color name="w_black">#000000</color>
     <color name="w_white">#ffffff</color>
     <color name="w_gray">#FFA7A3A3</color>
+    <color name="w_pop">#FF37DC6E</color>
 </resources>
