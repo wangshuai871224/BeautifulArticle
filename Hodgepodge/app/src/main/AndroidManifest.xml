@@ -29,6 +29,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".mine.SetActivity"/>
+        <activity android:name=".mine.mypictorial.PictorialActivity"/>
+        <activity android:name=".mine.designer.DesignerActivity"/>
+        <activity android:name=".mine.suggest.SuggestActivity"/>
+        <activity android:name=".mine.wish.WishActivity"/>
+        <activity android:name=".mine.msgcenter.MsgCenterActivity"/>
+
     </application>
 
 </manifest>
