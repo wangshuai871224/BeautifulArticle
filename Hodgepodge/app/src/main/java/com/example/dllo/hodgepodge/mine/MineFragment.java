@@ -15,6 +15,7 @@ import com.example.dllo.hodgepodge.base.BaseFragment;
 import com.example.dllo.hodgepodge.mine.designer.DesignerActivity;
 import com.example.dllo.hodgepodge.mine.msgcenter.MsgCenterActivity;
 import com.example.dllo.hodgepodge.mine.mypictorial.PictorialActivity;
+import com.example.dllo.hodgepodge.mine.set.SetActivity;
 import com.example.dllo.hodgepodge.mine.suggest.SuggestActivity;
 import com.example.dllo.hodgepodge.mine.wish.WishActivity;
 
@@ -22,13 +23,14 @@ import com.example.dllo.hodgepodge.mine.wish.WishActivity;
  * Created by dllo on 16/12/19.
  */
 
-public class MineFragment extends BaseFragment implements View.OnClickListener{
+public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     private ImageView mineSet, loginImage;
     private TextView mineName;
-    private RelativeLayout minePictorial,attentionDesigner,mineWishList,messageCenter,mineSuggest, beautifulApp;
+    private RelativeLayout minePictorial, attentionDesigner, mineWishList, messageCenter, mineSuggest, beautifulApp;
     private Intent mIntent;
     private PopupWindow mPopupWindow;
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_mine;
@@ -36,7 +38,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected void initView() {
-       findId();
+        findId();
     }
 
     // 找ID
@@ -50,9 +52,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         messageCenter = bindView(R.id.message_center);
         mineSuggest = bindView(R.id.mine_suggest);
         beautifulApp = bindView(R.id.beautiful_app);
-        setClick(this, mineSet,loginImage, minePictorial,
+        setClick(this, mineSet, loginImage, minePictorial,
                 attentionDesigner, mineWishList,
-                messageCenter, mineSuggest,beautifulApp);
+                messageCenter, mineSuggest, beautifulApp);
     }
 
     @Override
@@ -69,11 +71,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
                 startActivity(mIntent);
                 break;
             case R.id.login_image:
-                if (mPopupWindow == null || !mPopupWindow.isShowing())  {
-                    popShow();
-                }else {
-                    mPopupWindow.dismiss();
-                }
+                // 判断是否已经登录, 没有登录才显示popupwindow
+                popShow();
 
                 break;
             case R.id.mine_pictorial:
@@ -106,7 +105,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
 
     private void popShow() {
         mPopupWindow = new PopupWindow(getView(), 700, 900, true);
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.pop_up,null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.pop_up, null);
         mPopupWindow.setContentView(view);
         mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
         mPopupWindow.showAtLocation(getView(), Gravity.CENTER, 0, 0);

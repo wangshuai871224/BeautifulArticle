@@ -1,4 +1,6 @@
-package com.example.dllo.hodgepodge.mine;
+package com.example.dllo.hodgepodge.mine.set;
+
+import android.widget.TextView;
 
 import com.example.dllo.hodgepodge.R;
 import com.example.dllo.hodgepodge.base.BaseActivity;

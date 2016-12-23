@@ -30,8 +30,7 @@
             </intent-filter>
         </activity>
 
-
-        <activity android:name=".mine.SetActivity"/>
+        <activity android:name=".mine.set.SetActivity"/>
         <activity android:name=".mine.mypictorial.PictorialActivity"/>
         <activity android:name=".mine.designer.DesignerActivity"/>
         <activity android:name=".mine.suggest.SuggestActivity"/>
