@@ -1,7 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/designer_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/w_gray_other"
+        android:padding="@dimen/w_margin_ten">
+
+        <ImageView
+            android:id="@+id/designer_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/w_margin_twenty"
+            android:src="@mipmap/icon_whiteback_normal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="关注的设计师"
+            android:textColor="@color/w_gray"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/designer_top">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"/>
+
+        <LinearLayout
+            android:id="@+id/no_designer_detail_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/no_collection_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="你还没有关注设计师"
+                android:textColor="@color/w_gray"
+            android:layout_marginTop="@dimen/w_margin_twenty"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

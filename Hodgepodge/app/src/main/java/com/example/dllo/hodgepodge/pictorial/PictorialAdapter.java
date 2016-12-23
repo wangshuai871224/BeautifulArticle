@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dllo.hodgepodge.R;
 import com.example.dllo.hodgepodge.tools.CommonVH;
 import com.wirelesspienetwork.overview.model.OverviewAdapter;
@@ -15,14 +16,26 @@ import com.wirelesspienetwork.overview.model.ViewHolder;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
+
 
 /**
  * Created by shuaiwang on 16/12/21.
  */
 
-public class PictorialAdapter extends OverviewAdapter<PictorialAdapter.ViewHoler,PictorialBean>{
+public class PictorialAdapter extends OverviewAdapter<PictorialAdapter.ViewHoler,Integer>{
 
     private PictorialBean mBean;
+    private Context mContext;
+
+    public PictorialAdapter(Context context) {
+        mContext = context;
+    }
+
+    public PictorialAdapter(List<Integer> integers, Context context) {
+        super(integers);
+        mContext = context;
+    }
 
     public void setBean(PictorialBean bean) {
         mBean = bean;
@@ -30,18 +43,23 @@ public class PictorialAdapter extends OverviewAdapter<PictorialAdapter.ViewHoler
 
     @Override
     public ViewHoler onCreateViewHolder(Context context, ViewGroup parent) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recents_dummy, parent, false);
-        ViewHoler viewHoler = new ViewHoler(view);
-        return viewHoler;
+        View view = View.inflate(context, R.layout.recents_dummy, null);
+        return new ViewHoler(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHoler viewHoler) {
+        viewHoler.title.setText(mBean.getData().getArticles().get(mBean.getData().getArticles().size()-viewHoler.getPosition()-1).getTitle());
+        viewHoler.subtitle.setText(mBean.getData().getArticles().get(mBean.getData().getArticles().size()-viewHoler.getPosition()-1).getSub_title());
+        viewHoler.userName.setText(mBean.getData().getArticles().get(mBean.getData().getArticles().size()-viewHoler.getPosition()-1).getAuthor().getUsername());
 
-        viewHoler.title.setText(mBean.getData().getArticles().get(0).getTitle());
-        viewHoler.subtitle.setText(mBean.getData().getArticles().get(0).getSub_title());
-        viewHoler.userName.setText(mBean.getData().getArticles().get(0).getAuthor().getUsername());
-
+        Glide.with(mContext).load(mBean.getData().getArticles()
+                .get(mBean.getData().getArticles().size()-viewHoler.getPosition()-1).getImage_url())
+                .into(viewHoler.pictorialImage);
+        Glide.with(mContext).load(mBean.getData().getArticles()
+                .get(mBean.getData().getArticles().size()-viewHoler.getPosition()-1).getAuthor().getAvatar_url())
+                .bitmapTransform(new CropCircleTransformation(mContext))
+                .into(viewHoler.avatarImage);
     }
 
     class  ViewHoler extends ViewHolder{
