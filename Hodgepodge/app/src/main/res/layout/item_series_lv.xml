@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/m_write"
+              android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/item_series_iv_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/m_margin_one_hundred_and_eightty"
+        android:scaleType="fitXY"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_series_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_margin_ten"
+            android:textColor="@color/black"
+            android:textSize="@dimen/m_size_fifteen"/>
+
+        <TextView
+            android:id="@+id/item_series_tv_update_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_series_tv_title"
+            android:layout_marginLeft="@dimen/m_margin_ten"
+            android:textSize="@dimen/m_size_ten"/>
+
+        <TextView
+            android:id="@+id/item_series_tv_follower_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_series_tv_title"
+            android:layout_marginLeft="@dimen/m_margin_ten"
+            android:layout_toRightOf="@id/item_series_tv_update_to"
+            android:textSize="@dimen/m_size_ten"/>
+
+        <ImageView
+            android:id="@+id/item_series_iv_attention"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/m_margin_ten"
+            android:src="@mipmap/attention"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_series_tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/m_margin_ten"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/m_margin_thirteen"/>
+</LinearLayout>

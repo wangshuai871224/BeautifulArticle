@@ -11,4 +11,6 @@
     <dimen name="w_text_size_normal">15dp</dimen>
     <dimen name="w_margin_twenty">20dp</dimen>
     <dimen name="w_text_size_black">30dp</dimen>
+    <dimen name="m_margin_thirteen">13dp</dimen>
+    <dimen name="m_margin_one_hundred_and_eightty">170dp</dimen>
 </resources>
