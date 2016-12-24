@@ -80,7 +80,7 @@
                     android:gravity="center"
                     android:lines="2"
                     android:textColor="@color/w_black"
-                    android:textSize="@dimen/w_margin_twenty"/>
+                    android:textSize="@dimen/w_text_size_normal"/>
 
                 <TextView
                     android:id="@+id/pictorial_subtitle"

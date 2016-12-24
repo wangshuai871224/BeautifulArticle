@@ -56,6 +56,7 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
 //                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
 //                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         // Register the broadcast receiver to handle messages when the screen is turned off
+
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(SearchManager.INTENT_GLOBAL_SEARCH_ACTIVITY_CHANGED);
@@ -71,7 +72,6 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
             e.printStackTrace();
         }
 
-
     }
 
     @Override
@@ -86,16 +86,17 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
         // Mark Recents as visible
         mVisible = true;
 
+        // 通过改变适配器来实现画报, 适配器继承OverViewAdapter
         mPictorialAdapter = new PictorialAdapter(models, getContext());
         OkHttpManager.getInstance().get(URLValues.PICTORIAL_URL, PictorialBean.class, new NetCallBack<PictorialBean>() {
             @Override
             public void onResponse(PictorialBean bean) {
                 mPictorialAdapter.setBean(bean);
                 mRecentView.setTaskStack(mPictorialAdapter);
+
                 for (int i = 0; i < bean.getData().getArticles().size(); i++) {
                     models.add(bean.getData().getArticles().size());
                 }
-
             }
 
             @Override
@@ -103,7 +104,6 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
 
             }
         });
-//
 
 
     }

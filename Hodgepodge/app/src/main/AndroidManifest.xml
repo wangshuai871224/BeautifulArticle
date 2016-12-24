@@ -36,7 +36,7 @@
         <activity android:name=".mine.suggest.SuggestActivity"/>
         <activity android:name=".mine.wish.WishActivity"/>
         <activity android:name=".mine.msgcenter.MsgCenterActivity"/>
-
+        <activity android:name=".pictorial.PictorialItemActivity"/>
 
         <activity android:name=".video.newest.NewestActivity">
         </activity>

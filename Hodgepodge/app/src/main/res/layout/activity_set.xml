@@ -74,7 +74,7 @@
 
         <!--清除缓存-->
         <RelativeLayout
-            android:id="@+id/clear_cache"
+            android:id="@+id/clean_cache"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -88,7 +88,7 @@
                 android:textColor="@color/w_black"/>
 
             <ImageView
-                android:id="@+id/clear_cache_image"
+                android:id="@+id/clean_cache_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -96,10 +96,11 @@
                 android:src="@mipmap/ic_common_arrow_normal"/>
 
             <TextView
+                android:id="@+id/cache_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/w_margin_ten"
-                android:layout_toLeftOf="@id/clear_cache_image"
+                android:layout_toLeftOf="@id/clean_cache_image"
                 android:text="0KB"/>
 
         </RelativeLayout>
