@@ -38,12 +38,14 @@ public class SetActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void initData() {
+        // 获取缓存
         try {
             String cache = DataCleanManager.getTotalCacheSize(this);
             cacheSize.setText(cache);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // 退出当前activity
         mSwipeBackLayout.bind();
     }
 
@@ -69,6 +71,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener{
             }
         });
 
+        // 清除缓存
         dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

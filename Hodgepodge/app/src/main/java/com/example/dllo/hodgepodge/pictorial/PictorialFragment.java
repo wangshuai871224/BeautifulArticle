@@ -21,6 +21,8 @@ import com.wirelesspienetwork.overview.views.Overview;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -91,12 +93,14 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
         OkHttpManager.getInstance().get(URLValues.PICTORIAL_URL, PictorialBean.class, new NetCallBack<PictorialBean>() {
             @Override
             public void onResponse(PictorialBean bean) {
-                mPictorialAdapter.setBean(bean);
-                mRecentView.setTaskStack(mPictorialAdapter);
 
+                Collections.reverse(bean.getData().getArticles());
+                mRecentView.setTaskStack(mPictorialAdapter);
+                models.clear();//
                 for (int i = 0; i < bean.getData().getArticles().size(); i++) {
                     models.add(bean.getData().getArticles().size());
                 }
+                mPictorialAdapter.setBean(bean);//
             }
 
             @Override

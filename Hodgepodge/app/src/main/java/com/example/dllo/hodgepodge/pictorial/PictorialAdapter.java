@@ -17,6 +17,7 @@ import com.example.dllo.hodgepodge.tools.URLValues;
 import com.wirelesspienetwork.overview.model.OverviewAdapter;
 import com.wirelesspienetwork.overview.model.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
@@ -56,22 +57,22 @@ public class PictorialAdapter extends OverviewAdapter<PictorialAdapter.CustomVie
 
     @Override
     public void onBindViewHolder(final CustomViewHolder viewHolder) {
-        viewHolder.title.setText(mBeanList.get(mBeanList.size()-viewHolder.getPosition()-1).getTitle());
-        viewHolder.subtitle.setText(mBeanList.get(mBeanList.size()-viewHolder.getPosition()-1).getSub_title());
-        viewHolder.userName.setText(mBeanList.get(mBeanList.size()-viewHolder.getPosition()-1).getAuthor().getUsername());
+        viewHolder.title.setText(mBeanList.get(viewHolder.getPosition()).getTitle());
+        viewHolder.subtitle.setText(mBeanList.get(viewHolder.getPosition()).getSub_title());
+        viewHolder.userName.setText(mBeanList.get(viewHolder.getPosition()).getAuthor().getUsername());
 
         Glide.with(mContext).load(mBeanList
-                .get(mBeanList.size()-viewHolder.getPosition()-1).getImage_url())
+                .get(viewHolder.getPosition()).getImage_url())
                 .into(viewHolder.pictorialImage);
         Glide.with(mContext).load(mBeanList
-                .get(mBeanList.size()-viewHolder.getPosition()-1).getAuthor().getAvatar_url())
+                .get(viewHolder.getPosition()).getAuthor().getAvatar_url())
                 .bitmapTransform(new CropCircleTransformation(mContext))
                 .into(viewHolder.avatarImage);
         // item的点击事件
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int id = mBeanList.get(mBeanList.size() - viewHolder.getPosition()-1).getId();
+                int id = mBeanList.get(viewHolder.getPosition()).getId();
                 String itemUrl = URLValues.PICTORIAL_ITEM_BEFORE + id + URLValues.PICTORIAL_ITEM_AFTER;
                 Intent intent = new Intent(mContext, PictorialItemActivity.class);
                 intent.putExtra("itemUrl", itemUrl);
@@ -79,6 +80,8 @@ public class PictorialAdapter extends OverviewAdapter<PictorialAdapter.CustomVie
             }
         });
     }
+
+
 
     class CustomViewHolder extends ViewHolder{
 
