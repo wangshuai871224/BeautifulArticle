@@ -1,10 +1,12 @@
 package com.example.dllo.hodgepodge.video.newest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -36,6 +38,7 @@ public class NewestFragment extends BaseFragment {
     private List<String> mImage;
     private int a = 1;
     private FmNewestAdapter mAdapter;
+    private NewestBean mNewestBean;
 
     @Override
     protected int setLayout() {
@@ -71,6 +74,26 @@ public class NewestFragment extends BaseFragment {
          * 上拉加载, 下拉刷新
          */
         initRefreshData();
+        /**
+         * listView 的item点击事件
+         */
+        listViewItemCick();
+    }
+
+    /**
+     * listView 的item点击事件
+     */
+    private void listViewItemCick() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getContext(), NewestActivity.class);
+                intent.putExtra("requestUrl", mNewestBean.getData().get(i).getRequest_url());
+                Log.d("---", mNewestBean.getData().get(i).getPostid());
+                intent.putExtra("postId", String.valueOf(mNewestBean.getData().get(i).getPostid()));
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -81,7 +104,8 @@ public class NewestFragment extends BaseFragment {
             // 下拉刷新
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
-                initPullDownToRefreshData();
+                // 获取刷新数据
+//                initPullDownToRefreshData();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -96,7 +120,8 @@ public class NewestFragment extends BaseFragment {
                 a += 1;
                 HashMap map = new HashMap();
                 map.put("p", a + "");
-                map.put("size", "10");
+                map.put("size", "20");
+                map.put("tab", "latest");
                 OkHttpManager.getInstance().post(URLValues.NEWEST_URL, NewestBean.class, new NetCallBack<NewestBean>() {
                     @Override
                     public void onResponse(NewestBean bean) {
@@ -132,7 +157,7 @@ public class NewestFragment extends BaseFragment {
         mRefreshListView.getLoadingLayoutProxy(false, true).setReleaseLabel("松开加载更多...");
 
         mRefreshListView.getLoadingLayoutProxy(true, false).setPullLabel("下拉刷新...");
-        mRefreshListView.getLoadingLayoutProxy(true, false).setRefreshingLabel("正在拼命加载...");
+        mRefreshListView.getLoadingLayoutProxy(true, false).setRefreshingLabel("正在拼命刷新数据...");
         mRefreshListView.getLoadingLayoutProxy(true, false).setReleaseLabel("松开加载更多...");
     }
 
@@ -183,17 +208,17 @@ public class NewestFragment extends BaseFragment {
     private void initPullDownToRefreshData() {
         HashMap<String, String> map = new HashMap<>();
         map.put("p", "1");
-        map.put("size", "10");
-
+        map.put("size", "20");
+        map.put("tab", "latest");
         OkHttpManager.getInstance().post(URLValues.NEWEST_URL, NewestBean.class, new NetCallBack<NewestBean>() {
             @Override
             public void onResponse(NewestBean bean) {
-                mAdapter = new FmNewestAdapter();
                 mAdapter.setNewestBean(bean);
             }
 
             @Override
             public void onError(Exception e) {
+
             }
         }, map);
     }
@@ -205,11 +230,12 @@ public class NewestFragment extends BaseFragment {
         a = 1;
         HashMap<String, String> map = new HashMap<>();
         map.put("p", "1");
-        map.put("size", "10");
-
+        map.put("size", "20");
+        map.put("tab", "latest");
         OkHttpManager.getInstance().post(URLValues.NEWEST_URL, NewestBean.class, new NetCallBack<NewestBean>() {
             @Override
             public void onResponse(NewestBean bean) {
+                mNewestBean = bean;
                 mAdapter = new FmNewestAdapter();
                 mAdapter.setNewestBean(bean);
                 mRefreshListView.setAdapter(mAdapter);

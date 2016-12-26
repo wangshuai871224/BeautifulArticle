@@ -41,12 +41,12 @@ public class FmNewestAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mNewestBean != null && mNewestBean.getData().size() > 0 ? mNewestBean.getData().size() : 0;
+        return mList != null && mList.size() > 0 ? mList.size() : 0;
     }
 
     @Override
     public Object getItem(int i) {
-        return mNewestBean != null && mNewestBean.getData().size() > 0 ? mNewestBean.getData().get(i) : null;
+        return mList != null && mList.size() > 0 ? mList.get(i) : null;
     }
 
     @Override

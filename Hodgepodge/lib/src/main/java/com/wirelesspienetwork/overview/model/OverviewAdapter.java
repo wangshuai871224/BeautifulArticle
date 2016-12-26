@@ -42,8 +42,7 @@ public abstract class OverviewAdapter<VH extends ViewHolder, Model extends Objec
 
     }
 
-    public OverviewAdapter(List<Model> models)
-    {
+    public OverviewAdapter(List<Model> models) {
         if (models != null) {
             mItems = models;
         }

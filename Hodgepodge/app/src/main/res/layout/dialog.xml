@@ -3,12 +3,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/fragment_newest_lv"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/w_margin_ten"
+        android:text="确定清楚缓存吗?"
+        android:textColor="@color/w_pop"/>
 
 </LinearLayout>
