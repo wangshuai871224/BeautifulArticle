@@ -9,4 +9,6 @@
     <color name="w_black">#000000</color>
     <color name="w_white">#ffffff</color>
     <color name="w_gray">#FFA7A3A3</color>
+    <color name="t_black">#393939</color>
+    <color name="t_tabl_black">#1b1b1b</color>
 </resources>

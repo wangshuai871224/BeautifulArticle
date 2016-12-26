@@ -9,14 +9,16 @@ import android.widget.TextView;
 
 import com.example.dllo.hodgepodge.R;
 
+import java.util.List;
+
 /**
  * Created by TaiF on 16/12/22.
  */
 public class PopupAdapter extends RecyclerView.Adapter<PopupAdapter.PopupViewHolder> {
     private Context mContext;
-    private BeanMatterPop bean;
+    private List<BeanTab.DataBean.CategoriesBean.SubCategoriesBean> bean;
 
-    public void setBean(BeanMatterPop bean) {
+    public void setBean(List<BeanTab.DataBean.CategoriesBean.SubCategoriesBean> bean) {
         this.bean = bean;
         notifyDataSetChanged();
     }
@@ -34,19 +36,22 @@ public class PopupAdapter extends RecyclerView.Adapter<PopupAdapter.PopupViewHol
 
     @Override
     public void onBindViewHolder(PopupViewHolder holder, int position) {
-        holder.tvData.setText(bean.getData().getCategories().get(position).getName());
+        if ( position == 0 ) {
+            holder.tvData.setText("全部");
+        } else {
+            holder.tvData.setText(bean.get(position - 1).getName());
+        }
     }
-
     @Override
     public int getItemCount() {
-        return bean == null ? 0 : bean.getData().getCategories().size();
+        return bean == null ? 0 : bean.size();
     }
 
     public class PopupViewHolder extends RecyclerView.ViewHolder {
         private TextView tvData;
         public PopupViewHolder(View itemView) {
             super(itemView);
-            tvData = (TextView) itemView.findViewById(R.id.tv_popup);
+            tvData = (TextView) itemView.findViewById(R.id.tv_choose);
 
         }
     }

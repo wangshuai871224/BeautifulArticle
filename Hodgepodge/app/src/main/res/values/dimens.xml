@@ -11,4 +11,19 @@
     <dimen name="w_text_size_normal">15dp</dimen>
     <dimen name="w_margin_twenty">20dp</dimen>
     <dimen name="w_text_size_black">30dp</dimen>
+    <dimen name="t_image_width">25dp</dimen>
+    <dimen name="t_image_height">25dp</dimen>
+    <dimen name="t_relative_layout_width">80dp</dimen>
+    <dimen name="t_relative_layout_height">30dp</dimen>
+    <dimen name="t_relative_layout_weight">30dp</dimen>
+    <dimen name="t_layout_margin">20dp</dimen>
+    <dimen name="t_text_size">14dp</dimen>
+    <dimen name="t_margin_start">330dp</dimen>
+    <dimen name="t_start">10dp</dimen>
+    <dimen name="t_margin_top">310dp</dimen>
+    <dimen name="t_margin">5dp</dimen>
+    <dimen name="t_table_height">40dp</dimen>
+    <dimen name="t_ll_height">70dp</dimen>
+    <dimen name="t_hand_pic_width">40dp</dimen>
+    <dimen name="t_hand_pic_height">40dp</dimen>
 </resources>
