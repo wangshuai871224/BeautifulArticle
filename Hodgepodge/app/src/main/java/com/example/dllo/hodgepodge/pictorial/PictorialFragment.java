@@ -96,11 +96,11 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
 
                 Collections.reverse(bean.getData().getArticles());
                 mRecentView.setTaskStack(mPictorialAdapter);
-                models.clear();//
+                models.clear();// 防止每次都添加数据,造成数组越界
                 for (int i = 0; i < bean.getData().getArticles().size(); i++) {
                     models.add(bean.getData().getArticles().size());
                 }
-                mPictorialAdapter.setBean(bean);//
+                mPictorialAdapter.setBean(bean);
             }
 
             @Override
