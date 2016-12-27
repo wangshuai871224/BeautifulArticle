@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-<com.youth.banner.Banner
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/m_margin_two_hundred"
-    android:id="@+id/newest_headview_banner"
-    android:scaleType="fitXY"/>
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.youth.banner.Banner
+        android:id="@+id/newest_headview_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/m_margin_two_hundred"
+        android:scaleType="fitXY"/>
 </LinearLayout>

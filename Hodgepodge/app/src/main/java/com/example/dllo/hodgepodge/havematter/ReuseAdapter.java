@@ -1,11 +1,13 @@
 package com.example.dllo.hodgepodge.havematter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -16,7 +18,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 /**
  * Created by TaiF on 16/12/21.
  */
-public class ReuseAdapter extends BaseAdapter{
+public class ReuseAdapter extends BaseAdapter {
     private BeanCategorises bean;
     private Context mContext;
 
@@ -47,7 +49,7 @@ public class ReuseAdapter extends BaseAdapter{
     public View getView(int i, View view, ViewGroup viewGroup) {
         ReuseViewHolder holder = null;
         if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.item_reuse,viewGroup,false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.item_reuse, viewGroup, false);
             holder = new ReuseViewHolder(view);
             view.setTag(holder);
         } else {
@@ -59,18 +61,28 @@ public class ReuseAdapter extends BaseAdapter{
         Glide.with(mContext).load(bean.getData().getProducts().get(i).getCover_images().get(0)).into(holder.ivCover);
         Glide.with(mContext).load(bean.getData().getProducts().get(i).getDesigner().getAvatar_url())
                 .bitmapTransform(new CropCircleTransformation(mContext)).into(holder.ivAvatar);
+        holder.rlJump.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, SecondaryActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
         return view;
     }
 
     private class ReuseViewHolder {
-        private ImageView ivCover,ivAvatar;
-        private TextView tvBrief,tvName,tvLabel;
+        private RelativeLayout rlJump;
+        private ImageView ivCover, ivAvatar;
+        private TextView tvBrief, tvName, tvLabel;
         public ReuseViewHolder(View view) {
+            rlJump = (RelativeLayout) view.findViewById(R.id.rl_jump_pic);
             ivCover = (ImageView) view.findViewById(R.id.iv_list_cover);
             ivAvatar = (ImageView) view.findViewById(R.id.iv_avatar_url);
             tvBrief = (TextView) view.findViewById(R.id.tv_brief);
             tvName = (TextView) view.findViewById(R.id.tv_designer_name);
             tvLabel = (TextView) view.findViewById(R.id.tv_designer_label);
+
         }
     }
 }

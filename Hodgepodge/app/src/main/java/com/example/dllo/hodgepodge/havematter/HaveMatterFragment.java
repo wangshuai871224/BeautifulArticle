@@ -31,7 +31,7 @@ public class HaveMatterFragment extends BaseFragment {
     private OkHttpClient mOkHttpClient;
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private BeanTab mBean;
-    private HaveMatterAdapter mMAdapter;
+    private HaveMatterAdapter mAdapter;
     private Request mRequest;
 
     @Override
@@ -48,14 +48,13 @@ public class HaveMatterFragment extends BaseFragment {
     @Override
     protected void initData() {
         mOkHttpClient = new OkHttpClient();
-        mMAdapter = new HaveMatterAdapter(getChildFragmentManager());
+        mAdapter = new HaveMatterAdapter(getChildFragmentManager());
         mRequest = new Request.Builder().url(URLValues.TAB_URL).build();
         mOkHttpClient.newCall(mRequest).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
             }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 
@@ -65,9 +64,8 @@ public class HaveMatterFragment extends BaseFragment {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-
-                        mMAdapter.setBean(mBean);
-                        vpHaveMatter.setAdapter(mMAdapter);
+                        mAdapter.setBean(mBean);
+                        vpHaveMatter.setAdapter(mAdapter);
                         tbHaveMatter.setupWithViewPager(vpHaveMatter);
                         tbHaveMatter.setTabMode(TabLayout.MODE_SCROLLABLE);
                         tbHaveMatter.setTabTextColors(Color.GRAY,Color.WHITE);
