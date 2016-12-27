@@ -15,7 +15,7 @@ public class URLValues {
     public static final String DAILY_URL = "http://design.zuimeia.com/api/v1/products/daily/?timestamp=1482210000000&device_id=000000000000000&platform=android&lang=zh&appVersion=1.2.6&appVersionCode=10260&systemVersion=22&countryCode=CN&user_id=0&token=&package_name=com.zuiapps.zuiworld";
 
     public static final String MATTERPOP_URL = "http://design.zuimeia.com/api/v1/product/categories/?device_id=000000000000000&platform=android&lang=zh&appVersion=1.2.6&appVersionCode=10260&systemVersion=22&countryCode=CN&user_id=0&token=&package_name=com.zuiapps.zuiworld";
-
+    public static final String HAVEMATTER_SECONDARY = "http://design.zuimeia.com/api/v1/product/1786/?device_id=000000000000000&platform=android&lang=zh&appVersion=1.2.6&appVersionCode=10260&systemVersion=22&countryCode=CN&user_id=0&token=&package_name=com.zuiapps.zuiworld";
     // 拼接接口
     public static final String JEWELRY_BEFORE = "http://design.zuimeia.com/api/v1/products/category/";
     public static final String JEWELRY_AFTER = "/?page=1&page_size=30&device_id=000000000000000&platform=android&lang=zh&appVersion=1.2.6&appVersionCode=10260&systemVersion=22&countryCode=CN&user_id=0&token=&package_name=com.zuiapps.zuiworld";
@@ -42,4 +42,10 @@ public class URLValues {
     public static final String NEWEST_BANNER_URL = "http://app.vmoiver.com/apiv3/index/getBanner";
     // 最新详情界面post 请求接口
     public static String NEWEST_VIDEO_URL = "http://app.vmoiver.com/apiv3/post/view";
+
+    // 系列二级界面post 请求接口
+    public static String SERIES_DETAIL_URL = "http://app.vmoiver.com/apiv3/series/view";
+
+    // 系列二级界面, 视频详情post 请求接口
+    public static String SERIES_VIDEO_URL = "http://app.vmoiver.com/apiv3/series/getVideo";
 }

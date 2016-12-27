@@ -3,10 +3,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-
-    <com.youth.banner.Banner
-        android:id="@+id/newest_headview_banner"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/m_margin_two_hundred"
-        android:scaleType="fitXY"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/w_margin_ten"
+        android:text="确定清楚缓存吗?"
+        android:textColor="@color/w_pop"/>
+
 </LinearLayout>

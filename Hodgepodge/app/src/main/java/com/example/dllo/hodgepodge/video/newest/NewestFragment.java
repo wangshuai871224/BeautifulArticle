@@ -165,7 +165,8 @@ public class NewestFragment extends BaseFragment {
      */
     private void initRunData() {
 
-        OkHttpManager.getInstance().get(URLValues.NEWEST_BANNER_URL, NewestRunBean.class, new NetCallBack<NewestRunBean>() {
+        OkHttpManager.getInstance().get(URLValues.NEWEST_BANNER_URL,
+                NewestRunBean.class, new NetCallBack<NewestRunBean>() {
             @Override
             public void onResponse(NewestRunBean bean) {
                 mImage = new ArrayList<String>();
@@ -179,8 +180,6 @@ public class NewestFragment extends BaseFragment {
 
             }
         });
-
-
     }
 
     private void setBannerData() {

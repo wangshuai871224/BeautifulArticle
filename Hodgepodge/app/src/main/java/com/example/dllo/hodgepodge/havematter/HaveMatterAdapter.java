@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.List;
+
 /**
  * Created by TaiF on 16/12/20.
  */
@@ -38,12 +40,17 @@ public class HaveMatterAdapter extends FragmentStatePagerAdapter {
         return String.valueOf(bean.getData().getCategories().get(pos).getId());
     }
 
+    public static List<BeanTab.DataBean.CategoriesBean.SubCategoriesBean> getTabPOP(int pos) {
+        return bean.getData().getCategories().get(pos).getSub_categories();
+    }
+
+
     @Override
     public CharSequence getPageTitle(int position) {
         if (position == 0){
             return title;
         } else {
-            return bean.getData().getCategories().get(position).getName();
+            return bean.getData().getCategories().get(position - 1).getName();
         }
     }
 }
