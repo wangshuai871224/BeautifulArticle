@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hodgepodge</string>
+    <string name="m_on_play">正在播放</string>
 </resources>

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -17,6 +18,7 @@ import com.example.dllo.hodgepodge.R;
 import com.example.dllo.hodgepodge.base.BaseActivity;
 import com.example.dllo.hodgepodge.listener.NetCallBack;
 import com.example.dllo.hodgepodge.tools.OkHttpManager;
+import com.example.dllo.hodgepodge.tools.URLValues;
 
 import java.util.HashMap;
 
@@ -64,7 +66,7 @@ public class NewestActivity extends BaseActivity {
         HashMap map = new HashMap();
 
         map.put("postid", mPostId);
-        OkHttpManager.getInstance().post("http://app.vmoiver.com/apiv3/post/view", NewestVideoBean.class, new NetCallBack<NewestVideoBean>() {
+        OkHttpManager.getInstance().post(URLValues.NEWEST_VIDEO_URL, NewestVideoBean.class, new NetCallBack<NewestVideoBean>() {
 
             @Override
             public void onResponse(NewestVideoBean bean) {
@@ -117,7 +119,8 @@ public class NewestActivity extends BaseActivity {
      * 获取获取网址及显示数据
      */
     private void initGetWebViewData() {
-
+        // 取消滚动条白边效果
+        mWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mWebView.loadUrl(mRequestUrl);
         /**
          * 设置用webView加载网页 对网页中超链接按钮的响应, 当按下某个连接时WebViewClient会调用这个方法
@@ -139,6 +142,8 @@ public class NewestActivity extends BaseActivity {
         webSettings.setJavaScriptEnabled(true);
         // setCacheMode 设置缓冲的模式
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
+        
 
     }
 }

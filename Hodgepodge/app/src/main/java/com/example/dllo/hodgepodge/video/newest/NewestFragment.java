@@ -77,20 +77,19 @@ public class NewestFragment extends BaseFragment {
         /**
          * listView 的item点击事件
          */
-        listViewItemCick();
+        listViewItemClick();
     }
 
     /**
      * listView 的item点击事件
      */
-    private void listViewItemCick() {
+    private void listViewItemClick() {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), NewestActivity.class);
-                intent.putExtra("requestUrl", mNewestBean.getData().get(i).getRequest_url());
-                Log.d("---", mNewestBean.getData().get(i).getPostid());
-                intent.putExtra("postId", String.valueOf(mNewestBean.getData().get(i).getPostid()));
+                intent.putExtra("requestUrl", mNewestBean.getData().get(i - 2).getRequest_url());
+                intent.putExtra("postId", String.valueOf(mNewestBean.getData().get(i - 2).getPostid()));
                 startActivity(intent);
             }
         });
@@ -240,7 +239,6 @@ public class NewestFragment extends BaseFragment {
                 mAdapter = new FmNewestAdapter();
                 mAdapter.setNewestBean(bean);
                 mRefreshListView.setAdapter(mAdapter);
-
             }
 
             @Override

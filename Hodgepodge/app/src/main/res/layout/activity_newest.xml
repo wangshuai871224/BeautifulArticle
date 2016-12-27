@@ -9,7 +9,7 @@
     tools:context="com.example.dllo.hodgepodge.video.newest.NewestActivity">
     <VideoView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/m_margin_one_hundred_and_eightty"
+        android:layout_height="@dimen/m_margin_two_hundred_twenty"
         android:id="@+id/activity_newest_video_view"/>
 <WebView
     android:layout_width="match_parent"
