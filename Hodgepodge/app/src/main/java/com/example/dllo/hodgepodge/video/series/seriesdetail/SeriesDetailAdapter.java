@@ -1,5 +1,6 @@
 package com.example.dllo.hodgepodge.video.series.seriesdetail;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,14 +17,24 @@ import java.util.List;
 
 public class SeriesDetailAdapter extends BaseAdapter {
     private SeriesDetailBean mSeriesDetailBean;
-    private List<SeriesDetailBean.DataBean.PostsBean> mList;
+    private List<SeriesDetailBean.DataBean.PostsBean.ListBean> mList;
+    private boolean b = true;// 用来判断视频播放状态
+    private int position;
+    private int a;
+    private int c;// 判断视频播放状态
 
-    public void setSeriesDetailBean(SeriesDetailBean seriesDetailBean) {
+    public void setSeriesDetailBean(SeriesDetailBean seriesDetailBean, int a) {
+        this.a = a;
         mSeriesDetailBean = seriesDetailBean;
-        mList = mSeriesDetailBean.getData().getPosts();
+        mList = mSeriesDetailBean.getData().getPosts().get(a).getList();
         notifyDataSetChanged();
     }
-
+    // 通过改变b 的boolean 类型, 在对应位置显示正在播放
+    public void showPlay(boolean b, int position, int c){
+        this.c = c;
+        this.b = b;
+        this.position = position;
+    }
     @Override
     public int getCount() {
         return mList != null && mList.size() > 0 ? mList.size() : 0;
@@ -42,17 +53,46 @@ public class SeriesDetailAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         CommonVH commonVH = CommonVH.listViewHolder(view, viewGroup, R.layout.item_series_detail_lv);
-        for (int j = 0; j < mList.get(0).getList().size(); j++) {
-            commonVH.setGlideImage(R.id.item_series_detail_iv_thumbnail, mList.get(0).getList().get(j).getThumbnail());
-            commonVH.setText(R.id.item_series_detail_tv_addtime, mList.get(0).getList().get(j).getAddtime());
-            commonVH.setText(R.id.item_series_detail_tv_title, mList.get(0).getList().get(j).getTitle());
-            commonVH.setText(R.id.item_series_detail_tv_duration, mList.get(0).getList().get(j).getDuration());
-        }
-        if (0 == i){
-            commonVH.getView(R.id.item_series_detail_rl_play).setVisibility(View.VISIBLE);
+
+        commonVH.setGlideImage(R.id.item_series_detail_iv_thumbnail, mList.get(i).getThumbnail());
+        commonVH.setText(R.id.item_series_detail_tv_addtime, mList.get(i).getAddtime());
+        commonVH.setText(R.id.item_series_detail_tv_title, "第" + String.valueOf(mList.get(i).getNumber()) + "集 : " + mList.get(i).getTitle());
+        commonVH.setText(R.id.item_series_detail_tv_duration, mList.get(i).getDuration());
+        if (Integer.parseInt(mList.get(i).getDuration()) % 60 > 9) {
+            if (Integer.parseInt(mList.get(i).getDuration()) / 60 > 9) {
+                commonVH.setText(R.id.item_series_detail_tv_duration, Integer.parseInt(mList.get(i).getDuration()) / 60 + ":" +
+                        Integer.parseInt(mList.get(i).getDuration()) % 60);
+            } else {
+                commonVH.setText(R.id.item_series_detail_tv_duration, "0" + Integer.parseInt(mList.get(i).getDuration()) / 60 + ":" +
+                        Integer.parseInt(mList.get(i).getDuration()) % 60);
+            }
         } else {
-            commonVH.getView(R.id.item_series_detail_rl_play).setVisibility(View.GONE);
+            if (Integer.parseInt(mList.get(i).getDuration()) / 60 > 9) {
+                commonVH.setText(R.id.item_series_detail_tv_duration, Integer.parseInt(mList.get(i).getDuration()) / 60 + ":0" +
+                        Integer.parseInt(mList.get(i).getDuration()) % 60);
+            } else {
+                commonVH.setText(R.id.item_series_detail_tv_duration, "0" + Integer.parseInt(mList.get(i).getDuration()) / 60 + ":0" +
+                        Integer.parseInt(mList.get(i).getDuration()) % 60);
+            }
+        }
+        /**
+         * 判断视频播放状态 默认开始播放的是最新一集, 先判断播放的视频是否是默认播放状态, 如果是, b为true, 不是, b则为false
+         * b 为false的时候, 根据横向position 和纵向position判断
+         */
+        if (b) {
+            if (0 == a &&0 == i) {
+                commonVH.getView(R.id.item_series_detail_rl_play).setVisibility(View.VISIBLE);
+            } else {
+                commonVH.getView(R.id.item_series_detail_rl_play).setVisibility(View.GONE);
+            }
+        } else {
+            if (a == c &&i == position){
+                commonVH.getView(R.id.item_series_detail_rl_play).setVisibility(View.VISIBLE);
+            } else {
+                commonVH.getView(R.id.item_series_detail_rl_play).setVisibility(View.GONE);
+            }
         }
         return commonVH.getItemView();
     }
+
 }

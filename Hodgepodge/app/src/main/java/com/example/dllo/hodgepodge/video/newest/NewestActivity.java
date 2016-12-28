@@ -11,6 +11,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -30,6 +31,7 @@ public class NewestActivity extends BaseActivity {
     private String mPostId;
     private VideoView mVideoView;
     private String mVideoUrl;
+    private ImageView mIvBack;
 
     @Override
     protected int setLayout() {
@@ -40,6 +42,7 @@ public class NewestActivity extends BaseActivity {
     protected void initView() {
         mVideoView = bindView(R.id.activity_newest_video_view);
         mWebView = bindView(R.id.activity_newest_webview);
+        mIvBack = bindView(R.id.activity_newest_iv_back);
     }
 
     @Override
@@ -56,6 +59,15 @@ public class NewestActivity extends BaseActivity {
          * 播放视频
          */
         initVideoPlay();
+        /**
+         * 返回点击事件
+         */
+        mIvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     /**
