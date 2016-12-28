@@ -2,6 +2,7 @@ package com.example.dllo.hodgepodge.pictorial;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -26,6 +27,10 @@ import com.example.dllo.hodgepodge.base.BaseActivity;
 import com.example.dllo.hodgepodge.listener.NetCallBack;
 import com.example.dllo.hodgepodge.tools.LiteOrmTool;
 import com.example.dllo.hodgepodge.tools.OkHttpManager;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.litesuits.orm.LiteOrm;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
@@ -37,7 +42,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 /**
  * Created by shuaiwang on 16/12/24.
  */
-public class PictorialItemActivity extends BaseActivity implements View.OnClickListener, SwipeBackActivityBase, View.OnTouchListener, View.OnScrollChangeListener {
+public class PictorialItemActivity extends BaseActivity implements View.OnClickListener, SwipeBackActivityBase, View.OnScrollChangeListener {
 
     private TextView designCity, designerName, commentNum, likeUserNum;
     private ImageView avatarUrl, returnBack, pictorialCollect;
@@ -48,10 +53,15 @@ public class PictorialItemActivity extends BaseActivity implements View.OnClickL
     private boolean isSave = false;
     private CollectBean mBean;
     private RelativeLayout mTopLayout;
-    private ScrollView mScrollView;
     private SwipeBackActivityHelper mSwipeBackActivityHelper;// 侧滑退出(需要添加依赖)
-    private ArticleGestureDetectorListener mGestureDetectorListener;
-    private GestureDetector mGestureDetector;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient mClient;
+    //    private ScrollView mScrollView;
+//    private ArticleGestureDetectorListener mGestureDetectorListener;
+//    private GestureDetector mGestureDetector;
 
 
     @Override
@@ -70,11 +80,12 @@ public class PictorialItemActivity extends BaseActivity implements View.OnClickL
         mWebView = bindView(R.id.pictorial_web_view);
         mWebView.setOnScrollChangeListener(this);
 
-        mScrollView = bindView(R.id.item_scroll);
+//        mScrollView = bindView(R.id.item_scroll);
         pictorialCollect = bindView(R.id.pictorial_collect);
         mTopLayout = bindView(R.id.pictorial_top_layout);
         setClick(this, returnBack, pictorialCollect);
-        mScrollView.setOnTouchListener(this);
+//        mScrollView.setOnTouchListener(this);
+
 
         mIntent = getIntent();
 
@@ -87,12 +98,11 @@ public class PictorialItemActivity extends BaseActivity implements View.OnClickL
         mSwipeBackActivityHelper.onActivityCreate();
 
         // 初始化 自定义的 GestureDetectorListener 监听接口的对象, 实现 top栏 的隐藏和显示
-        mGestureDetectorListener = new ArticleGestureDetectorListener(mTopLayout);
-        mGestureDetector = new GestureDetector(PictorialItemActivity.this, mGestureDetectorListener);
+//        mGestureDetectorListener = new ArticleGestureDetectorListener(mTopLayout);
+//        mGestureDetector = new GestureDetector(PictorialItemActivity.this, mGestureDetectorListener);
 
         url = mIntent.getStringExtra("itemUrl");
 
-        mWebView.setVerticalScrollBarEnabled(false);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new WebViewClient());
 
@@ -140,8 +150,8 @@ public class PictorialItemActivity extends BaseActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.pictorial_collect:
-
-                if (!isSave) {
+                isSave = !isSave;
+                if (isSave) {
                     pictorialCollect.setImageResource(R.mipmap.heart_icon_h);
                     LiteOrmTool.getmLiteOrm().insertCollectBean(mBean);
                 } else {
@@ -191,18 +201,18 @@ public class PictorialItemActivity extends BaseActivity implements View.OnClickL
         return v;
     }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        // 修改了 返回值
-        return mGestureDetector.onTouchEvent(motionEvent);
-    }
+//    @Override
+//    public boolean onTouch(View view, MotionEvent motionEvent) {
+//        // 修改了 返回值
+//        return mGestureDetector.onTouchEvent(motionEvent);
+//    }
 
 
     @Override//                                  移动的距离            原始距离
     public void onScrollChange(View view, int x, int y, int oldX, int oldY) {
 
         // 代表向上滑动(偏移量大于0)
-        if ((y - oldY) > 50){
+        if ((y - oldY) > 70) {
             Log.d("PictorialItemActivity", "y:" + y);
             Log.d("PictorialItemActivity", "oldY:" + oldY);
             mTopLayout.setVisibility(View.INVISIBLE);
@@ -210,7 +220,7 @@ public class PictorialItemActivity extends BaseActivity implements View.OnClickL
             mTopLayout.setAnimation(animation);
         }
         // 代表向下滑动(偏移量小于0)
-        if ((y - oldY) < -40){
+        if ((y - oldY) < -40) {
             Log.d("PictorialItemActivity", "y:" + y);
             Log.d("PictorialItemActivity", "oldY:" + oldY);
             mTopLayout.setVisibility(View.VISIBLE);
@@ -218,5 +228,50 @@ public class PictorialItemActivity extends BaseActivity implements View.OnClickL
             mTopLayout.setAnimation(animation);
         }
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("PictorialItem Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient.connect();
+        AppIndex.AppIndexApi.start(mClient, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(mClient, getIndexApiAction());
+        mClient.disconnect();
     }
 }

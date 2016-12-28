@@ -59,7 +59,7 @@ public class LiteOrmTool {
     public void insertCollectBean(final CollectBean bean) {
 
         if (!isSave(bean)) {
-            mLiteOrm.insert(bean);
+            mLiteOrm.save(bean);
         }
 
 //        new Thread(new Runnable() {

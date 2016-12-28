@@ -74,20 +74,9 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
             e.printStackTrace();
         }
 
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        // Mark Recents as visible
         mVisible = true;
-
+        // Mark Recents as visible
         // 通过改变适配器来实现画报, 适配器继承OverViewAdapter
         mPictorialAdapter = new PictorialAdapter(models, getContext());
         OkHttpManager.getInstance().get(URLValues.PICTORIAL_URL, PictorialBean.class, new NetCallBack<PictorialBean>() {
@@ -109,6 +98,17 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
             }
         });
 
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 
