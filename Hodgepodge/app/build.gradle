@@ -37,4 +37,6 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.1'
     compile 'com.github.userswlwork:pull-to-refresh:1.0.0'
     compile files('libs/lite-orm-1.9.2.jar')
+    // 侧滑退出
+    compile 'me.imid.swipebacklayout.lib:library:1.0.0'
 }

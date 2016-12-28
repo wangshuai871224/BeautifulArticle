@@ -1,8 +1,10 @@
 package com.example.dllo.hodgepodge.mine.mypictorial;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -39,7 +41,6 @@ public class PictorialActivity extends BaseActivity implements View.OnClickListe
         mAdapter = new PictorialActivityAdapter(getSupportFragmentManager());
         mFragments = new ArrayList<>();
 
-
     }
 
     @Override
@@ -49,6 +50,12 @@ public class PictorialActivity extends BaseActivity implements View.OnClickListe
         mAdapter.setFragments(mFragments);
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+        // 设置tab的选择模式居中
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        // 给tab的title设置颜色       未选中颜色      选中颜色
+        mTabLayout.setTabTextColors(Color.GRAY, Color.WHITE);
+        // tab的下标颜色
+        mTabLayout.setSelectedTabIndicatorColor(Color.WHITE);
 
     }
 
