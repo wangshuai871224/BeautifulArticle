@@ -22,7 +22,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.MainActivity"
+        android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -45,14 +46,21 @@
         <activity android:name=".mine.msgcenter.MsgCenterActivity"/>
 
         <activity android:name=".video.newest.NewestActivity">
+
         </activity>
         <activity android:name=".video.series.seriesdetail.SeriesActivity">
         </activity>
 
-        <activity android:name=".pictorial.PictorialItemActivity"/>
+        <activity android:name=".pictorial.PictorialItemActivity">
 
 
 
+
+
+        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version"/>
 
 
     </application>

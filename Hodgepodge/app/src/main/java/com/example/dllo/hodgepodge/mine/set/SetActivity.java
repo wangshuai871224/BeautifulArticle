@@ -58,6 +58,7 @@ public class SetActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
+    // 清除缓存
     private void showAlertDialog() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 
