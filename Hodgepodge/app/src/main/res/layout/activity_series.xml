@@ -2,28 +2,34 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_newest"
+    android:id="@+id/activity_series"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.dllo.hodgepodge.video.newest.NewestActivity">
+    tools:context="com.example.dllo.hodgepodge.video.series.seriesdetail.SeriesActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/m_margin_two_hundred_twenty">
         <VideoView
+            android:id="@+id/activity_series_videoview"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/m_margin_two_hundred_twenty"
-            android:id="@+id/activity_newest_video_view"/>
+            android:layout_height="@dimen/m_margin_two_hundred_twenty"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/m_margin_ten"
             android:src="@mipmap/back_icon"
-            android:id="@+id/activity_newest_iv_back"/>
+            android:id="@+id/activity_series_iv_back"/>
     </RelativeLayout>
-<WebView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/activity_newest_webview"/>
+
+
+
+    <ListView
+        android:id="@+id/activity_series_lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"/>
+
 </LinearLayout>

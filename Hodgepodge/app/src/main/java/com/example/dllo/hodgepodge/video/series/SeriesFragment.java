@@ -1,6 +1,10 @@
 package com.example.dllo.hodgepodge.video.series;
 
+import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.dllo.hodgepodge.R;
@@ -8,6 +12,7 @@ import com.example.dllo.hodgepodge.base.BaseFragment;
 import com.example.dllo.hodgepodge.listener.NetCallBack;
 import com.example.dllo.hodgepodge.tools.OkHttpManager;
 import com.example.dllo.hodgepodge.tools.URLValues;
+import com.example.dllo.hodgepodge.video.series.seriesdetail.SeriesActivity;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
@@ -23,6 +28,7 @@ public class SeriesFragment extends BaseFragment {
     private PullToRefreshListView mListView;
     private int a = 1;
     private FmSeriesAdapter mAdapter;
+    private SeriesBean mSeriesBean;
 
     @Override
     protected int setLayout() {
@@ -48,6 +54,24 @@ public class SeriesFragment extends BaseFragment {
          * 上拉加载, 下拉刷新
          */
         initRefreshData();
+        /**
+         * listView item 点击事件
+         */
+        listViewItemClick();
+    }
+
+    /**
+     * listView item 点击事件
+     */
+    private void listViewItemClick() {
+       mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               Intent intent = new Intent(getContext(), SeriesActivity.class);
+               intent.putExtra("seriesId", String.valueOf(mSeriesBean.getData().get(i -1).getSeriesid()));
+               startActivity(intent);
+           }
+       });
     }
 
     /**
@@ -60,6 +84,7 @@ public class SeriesFragment extends BaseFragment {
         OkHttpManager.getInstance().post(URLValues.SERIES_URL, SeriesBean.class, new NetCallBack<SeriesBean>() {
             @Override
             public void onResponse(SeriesBean bean) {
+                mSeriesBean = bean;
                 mAdapter = new FmSeriesAdapter();
                 mAdapter.setSeriesBean(bean);
                 mListView.setAdapter(mAdapter);
