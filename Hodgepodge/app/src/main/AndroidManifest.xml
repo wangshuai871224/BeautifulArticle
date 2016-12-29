@@ -47,32 +47,28 @@
 
         <activity android:name=".video.newest.NewestActivity">
 
-<<<<<<< HEAD
+
         </activity>
-=======
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data android:name="com.google.android.gms.version"
                    android:value="@integer/google_play_services_version"/>
 
 
->>>>>>> 2b7a8cea501d7ff3d79e9d002139ffd5b8e778de
+
         <activity android:name=".video.series.seriesdetail.SeriesActivity">
         </activity>
 
-        <activity android:name=".pictorial.PictorialItemActivity">
+        <activity android:name=".pictorial.PictorialItemActivity"/>
 
 
 
 
 
-<<<<<<< HEAD
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <meta-data android:name="com.google.android.gms.version"
-                   android:value="@integer/google_play_services_version"/>
-=======
->>>>>>> 2b7a8cea501d7ff3d79e9d002139ffd5b8e778de
+
+
+
 
 
     </application>
