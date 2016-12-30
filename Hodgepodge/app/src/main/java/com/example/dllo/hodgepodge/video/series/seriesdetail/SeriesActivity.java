@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -59,12 +60,14 @@ public class SeriesActivity extends BaseActivity {
 
     }
 
+    private RadioButton lastRadioBtn;
+
     /**
      * 头布局操作
      */
     private void initHeadView() {
         View headView = LayoutInflater.from(this).inflate(R.layout.headview_series_activity, null);
-        TextView tvTitle = (TextView) headView.findViewById(R.id.headview_series_activity_tv_title);
+        final TextView tvTitle = (TextView) headView.findViewById(R.id.headview_series_activity_tv_title);
         TextView tvCountFollow = (TextView) headView.findViewById(R.id.headview_series_activity_tv_count_follow);
         TextView tvWeekly = (TextView) headView.findViewById(R.id.headview_series_activity_tv_detail_weekly);
         TextView tvUpdate = (TextView) headView.findViewById(R.id.headview_series_activity_tv_detail_update_to);
@@ -74,10 +77,32 @@ public class SeriesActivity extends BaseActivity {
         final TextView tvContentTwo = (TextView) headView.findViewById(R.id.headview_series_activity_tv_detail_content_two);
         final RelativeLayout rlMore = (RelativeLayout) headView.findViewById(R.id.headview_series_activity_rl_look_more);
         final RelativeLayout rlIntroduction = (RelativeLayout) headView.findViewById(R.id.headview_series_activity_rl_ntroduction_of_fold);
-        RadioGroup radioGroup = (RadioGroup) headView.findViewById(R.id.headview_series_activity_radio_group_horizontal_scorllview);
+        final RadioGroup radioGroup = (RadioGroup) headView.findViewById(R.id.headview_series_activity_radio_group_horizontal_scorllview);
         // 添加头布局
         mListView.addHeaderView(headView);
         tvTitle.setText(mSeriesDetailBean.getData().getTitle());
+
+        /**
+         * 用于注册监听的视图树观察者(observer)，在视图树种全局事件改变时得到通知。这个全局事件不仅还包括整个树的布局，从绘画过程开始，
+         * 触摸模式的改变等。ViewTreeObserver不能够被应用程序实例化，因为它是由视图提供, 参照getViewTreeObserver()以查看更多信息
+         * getViewTreeObserver当在一个视图树中全局布局发生改变或者视图树中的某个视图的可视状态发生改变时，所要调用的回调函数的接口类
+         * addOnPreDrawListener注册一个回调函数，当一个视图树将要绘制时调用这个回调函数
+         * ViewTreeObserver.OnPreDrawListener()当一个视图树将要绘制时，所要调用的回调函数的接口类
+         */
+        tvContentTwo.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                // removeOnPreDrawListener移除之前已经注册的预绘制回调函数
+                tvContentTwo.getViewTreeObserver().removeOnPreDrawListener(this);
+                // 获取textView的行数, 如果行数大于2就是显示查看更多
+                int lineCount = tvContentTwo.getLineCount();
+                if (lineCount > 2) {
+                    rlMore.setVisibility(View.VISIBLE);
+                    rlIntroduction.setVisibility(View.GONE);
+                }
+                return false;
+            }
+        });
         tvCountFollow.setText(String.valueOf(mSeriesDetailBean.getData().getCount_follow()) + "人订阅");
         if (!mSeriesDetailBean.getData().getTag_name().isEmpty()) {
             tvTagName.setText("类型 : " + mSeriesDetailBean.getData().getTag_name());
@@ -92,8 +117,12 @@ public class SeriesActivity extends BaseActivity {
         tvContentTwo.setText(mSeriesDetailBean.getData().getContent());
         // 可滑动标题
         for (int i = 0; i < mSeriesDetailBean.getData().getPosts().size(); i++) {
-            mRadioButton = new RadioButton(this);
+            /**
+             * 注意!! 不应该设置为全局, 设置全局之后指针指向最后一个位置
+             */
+            final RadioButton mRadioButton = new RadioButton(this);
             mRadioButton.setId(i);
+            mRadioButton.setTextColor(Color.GRAY);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(5, 15, 5, 15);//4个参数按顺序分别是左上右下
@@ -105,24 +134,34 @@ public class SeriesActivity extends BaseActivity {
             } else {
                 mRadioButton.setText("      " + mSeriesDetailBean.getData().getPosts().get(i).getFrom_to() + "      |");
             }
-
-            mRadioButton.setBackgroundResource(R.drawable.selector_one);
-            mRadioButton.setTextColor(getResources().getColor(R.color.radio_button_text));
-            radioGroup.addView(mRadioButton);
-
-
+//            mRadioButton.setBackgroundResource(R.drawable.selector_one);
+            /**
+             * 默认进入时, i== 0的位置为选中状态
+             */
+            if (0 == i) {
+                mRadioButton.setTextColor(Color.BLACK);
+                lastRadioBtn = mRadioButton;
+            }
+            // 集数区间选中
             mRadioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    // 把点击按钮的上一个设置为灰色
+                    if (lastRadioBtn != null) {
+                        lastRadioBtn.setTextColor(Color.GRAY);
+                        lastRadioBtn = mRadioButton;
+                    } else {
+                        lastRadioBtn = mRadioButton;
+                    }
                     a = view.getId();
+                    mRadioButton.setTextColor(Color.BLACK);
                     mAdapter.setSeriesDetailBean(mSeriesDetailBean, view.getId());
                     mListView.setAdapter(mAdapter);
                 }
             });
-            mRadioButton.setTextColor(Color.GRAY);
+            radioGroup.addView(mRadioButton);
         }
-
-
+        // 查看全部
         rlMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +171,7 @@ public class SeriesActivity extends BaseActivity {
                 tvContent.setVisibility(View.VISIBLE);
             }
         });
+        // 收起简介
         rlIntroduction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +181,6 @@ public class SeriesActivity extends BaseActivity {
                 tvContentTwo.setVisibility(View.VISIBLE);
             }
         });
-
     }
 
     @Override
@@ -173,12 +212,12 @@ public class SeriesActivity extends BaseActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                mAdapter.showPlay(false, i -1, a);
+                mAdapter.showPlay(false, i - 1, a);
                 b = i - 1;
                 // 播放视频
                 initVideoPlay();
                 mTvDetailTitle.setText("第" + mSeriesDetailBean.getData().getPosts().get(a).getList().get(i - 1).getNumber() + "集 "
-                + mSeriesDetailBean.getData().getPosts().get(a).getList().get(i - 1).getTitle());
+                        + mSeriesDetailBean.getData().getPosts().get(a).getList().get(i - 1).getTitle());
                 mAdapter.notifyDataSetChanged();
             }
         });
