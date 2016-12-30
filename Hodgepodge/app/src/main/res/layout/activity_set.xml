@@ -12,6 +12,7 @@
         android:padding="@dimen/w_margin_ten">
 
         <ImageView
+            android:id="@+id/set_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/w_margin_twenty"
