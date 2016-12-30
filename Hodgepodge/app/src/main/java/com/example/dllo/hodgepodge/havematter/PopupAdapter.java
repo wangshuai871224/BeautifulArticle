@@ -1,6 +1,7 @@
 package com.example.dllo.hodgepodge.havematter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,15 @@ import java.util.List;
  */
 public class PopupAdapter extends RecyclerView.Adapter<PopupAdapter.PopupViewHolder> {
     private Context mContext;
+    private PopupClick mPopup;
+
+    private int a;
+
+    public void setPopup(PopupClick popup) {
+        mPopup = popup;
+        notifyDataSetChanged();
+    }
+
     private List<BeanTab.DataBean.CategoriesBean.SubCategoriesBean> bean;
 
     public void setBean(List<BeanTab.DataBean.CategoriesBean.SubCategoriesBean> bean) {
@@ -35,11 +45,27 @@ public class PopupAdapter extends RecyclerView.Adapter<PopupAdapter.PopupViewHol
     }
 
     @Override
-    public void onBindViewHolder(PopupViewHolder holder, int position) {
+    public void onBindViewHolder(final PopupViewHolder holder, final int position) {
+
         if ( position == 0 ) {
             holder.tvData.setText("全部");
-        } else {
+        }
+        else{
             holder.tvData.setText(bean.get(position - 1).getName());
+
+        }
+        holder.tvData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPopup.getPosition(position);
+            }
+        });
+        if (position == a){
+            holder.tvData.setTextColor(Color.BLACK);
+            holder.tvData.setBackgroundResource(R.drawable.popup_bcakground);
+        } else {
+            holder.tvData.setTextColor(Color.WHITE);
+            holder.tvData.setBackgroundResource(R.color.t_black);
         }
     }
     @Override
@@ -54,5 +80,9 @@ public class PopupAdapter extends RecyclerView.Adapter<PopupAdapter.PopupViewHol
             tvData = (TextView) itemView.findViewById(R.id.tv_choose);
 
         }
+    }
+
+    public void getPosition(int a){
+        this.a = a;
     }
 }

@@ -43,6 +43,8 @@ public class HaveMatterFragment extends BaseFragment {
     protected void initView() {
         tbHaveMatter = bindView(R.id.tb_havematter);
         vpHaveMatter = bindView(R.id.vp_havematter);
+        vpHaveMatter.setCurrentItem(4);
+        vpHaveMatter.setCurrentItem(0);
     }
 
     @Override

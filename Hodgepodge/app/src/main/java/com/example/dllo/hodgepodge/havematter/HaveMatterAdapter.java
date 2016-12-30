@@ -3,6 +3,7 @@ package com.example.dllo.hodgepodge.havematter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -33,11 +34,11 @@ public class HaveMatterAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return bean == null ? 0 : bean.getData().getCategories().size();
+        return bean == null ? 0 : bean.getData().getCategories().size() + 1;
     }
 
     public static String getMessage(int pos) {
-        return String.valueOf(bean.getData().getCategories().get(pos).getId());
+        return String.valueOf(bean.getData().getCategories().get(pos - 1).getId());
     }
 
     public static List<BeanTab.DataBean.CategoriesBean.SubCategoriesBean> getTabPOP(int pos) {
@@ -47,10 +48,12 @@ public class HaveMatterAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if (position == 0){
+        if (position == 0) {
             return title;
         } else {
             return bean.getData().getCategories().get(position - 1).getName();
         }
     }
+
+
 }

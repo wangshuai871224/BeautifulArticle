@@ -5,10 +5,10 @@
               android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/ll_popup"
+        android:id="@+id/rl_popup"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#393939">
+        android:background="#2e2e2e">
         <TextView
             android:id="@+id/tv_all"
             android:layout_width="wrap_content"
@@ -16,12 +16,12 @@
             android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
             android:textColor="#fff"
-            android:textSize="15dp"/>
+            android:textSize="14dp"/>
         <ImageView
             android:id="@+id/iv_down"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="320dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="330dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/down"/>
 
@@ -33,4 +33,5 @@
         android:scrollbars="none"
         android:background="#000"
         android:id="@+id/lv_havematter"/>
+
 </LinearLayout>
