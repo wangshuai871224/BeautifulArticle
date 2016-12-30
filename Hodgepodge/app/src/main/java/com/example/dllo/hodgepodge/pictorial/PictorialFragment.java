@@ -74,6 +74,31 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
             e.printStackTrace();
         }
 
+
+        mVisible = true;
+        // Mark Recents as visible
+        // 通过改变适配器来实现画报, 适配器继承OverViewAdapter
+        mPictorialAdapter = new PictorialAdapter(models, getContext());
+        OkHttpManager.getInstance().get(URLValues.PICTORIAL_URL, PictorialBean.class, new NetCallBack<PictorialBean>() {
+            @Override
+            public void onResponse(PictorialBean bean) {
+
+                Collections.reverse(bean.getData().getArticles());
+                mRecentView.setTaskStack(mPictorialAdapter);
+                models.clear();// 防止每次都添加数据,造成数组越界
+                for (int i = 0; i < bean.getData().getArticles().size(); i++) {
+                    models.add(bean.getData().getArticles().size());
+                }
+                mPictorialAdapter.setBean(bean);
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
+
+
     }
 
     @Override
@@ -84,31 +109,6 @@ public class PictorialFragment extends BaseFragment implements Overview.RecentsV
     @Override
     public void onResume() {
         super.onResume();
-
-        // Mark Recents as visible
-        mVisible = true;
-
-        // 通过改变适配器来实现画报, 适配器继承OverViewAdapter
-        mPictorialAdapter = new PictorialAdapter(models, getContext());
-        OkHttpManager.getInstance().get(URLValues.PICTORIAL_URL, PictorialBean.class, new NetCallBack<PictorialBean>() {
-            @Override
-            public void onResponse(PictorialBean bean) {
-
-                Collections.reverse(bean.getData().getArticles());
-                mRecentView.setTaskStack(mPictorialAdapter);
-                models.clear();//
-                for (int i = 0; i < bean.getData().getArticles().size(); i++) {
-                    models.add(bean.getData().getArticles().size());
-                }
-                mPictorialAdapter.setBean(bean);//
-            }
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-        });
-
 
     }
 

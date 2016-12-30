@@ -53,10 +53,10 @@ public class MainBean {
 
     public static List<MainBean> getVpFragment() {
         List<MainBean> beanList = new ArrayList<>();
-        beanList.add(new MainBean(R.mipmap.ic_launcher, new PictorialFragment(), "画报"));
-        beanList.add(new MainBean(R.mipmap.ic_launcher, new HaveMatterFragment(), "有物"));
-        beanList.add(new MainBean(R.mipmap.ic_launcher, new VideoFragment(), "视频"));
-        beanList.add(new MainBean(R.mipmap.ic_launcher, new MineFragment(), "我的"));
+        beanList.add(new MainBean(R.drawable.magazine, new PictorialFragment(), "画报"));
+        beanList.add(new MainBean(R.drawable.discover, new HaveMatterFragment(), "有物"));
+        beanList.add(new MainBean(R.drawable.designer, new VideoFragment(), "视频"));
+        beanList.add(new MainBean(R.drawable.mine, new MineFragment(), "我的"));
         return beanList;
     }
 }

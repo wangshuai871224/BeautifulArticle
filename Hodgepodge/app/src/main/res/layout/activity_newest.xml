@@ -7,10 +7,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.dllo.hodgepodge.video.newest.NewestActivity">
-    <VideoView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/m_margin_one_hundred_and_eightty"
-        android:id="@+id/activity_newest_video_view"/>
+        android:layout_height="@dimen/m_margin_two_hundred_twenty">
+        <VideoView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/m_margin_two_hundred_twenty"
+            android:id="@+id/activity_newest_video_view"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_margin_ten"
+            android:src="@mipmap/back_icon"
+            android:id="@+id/activity_newest_iv_back"/>
+    </RelativeLayout>
 <WebView
     android:layout_width="match_parent"
     android:layout_height="match_parent"

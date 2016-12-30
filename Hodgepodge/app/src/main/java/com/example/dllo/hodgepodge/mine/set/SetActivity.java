@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.example.dllo.hodgepodge.widget.SwipeBackLayout;
  */
 public class SetActivity extends BaseActivity implements View.OnClickListener{
 
+    private ImageView mImageView;
     private TextView cacheSize;
     private RelativeLayout clean;
     private SwipeBackLayout mSwipeBackLayout;
@@ -33,7 +35,8 @@ public class SetActivity extends BaseActivity implements View.OnClickListener{
         mSwipeBackLayout = new SwipeBackLayout(this);
         cacheSize = bindView(R.id.cache_size);
         clean = bindView(R.id.clean_cache);
-        setClick(this, clean);
+        mImageView = bindView(R.id.set_back);
+        setClick(this, clean, mImageView);
     }
 
     @Override
@@ -55,9 +58,13 @@ public class SetActivity extends BaseActivity implements View.OnClickListener{
             case R.id.clean_cache:
                 showAlertDialog();
                 break;
+            case R.id.set_back:
+                finish();
+                break;
         }
     }
 
+    // 清除缓存
     private void showAlertDialog() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 

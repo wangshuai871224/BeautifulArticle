@@ -144,7 +144,6 @@ public class SwipeBackLayout extends FrameLayout {
         }
     }
 
-
     @Override
     public void computeScroll() {
         //使用settleCapturedViewAt方法是，必须重写computeScroll方法，传入true

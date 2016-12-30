@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/m_margin_eighty"
+        android:layout_margin="@dimen/m_margin_ten"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <ImageView
+                android:id="@+id/item_series_detail_iv_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
+            <!--正在播放-->
+            <RelativeLayout
+                android:id="@+id/item_series_detail_rl_play"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/m_alpah"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/m_on_play"
+                    android:textColor="@color/m_write"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/item_series_detail_tv_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/m_write"
+                android:layout_marginBottom="@dimen/m_margin_ten"
+                android:layout_marginRight="@dimen/m_margin_ten"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/m_margin_ten"
+            android:layout_weight="3">
+
+            <TextView
+                android:id="@+id/item_series_detail_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/m_size_thirteen"/>
+
+            <TextView
+                android:id="@+id/item_series_detail_tv_addtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textSize="@dimen/m_size_eight"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
