@@ -40,4 +40,6 @@ dependencies {
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     compile project(path: ':librarys')
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'com.lcodecorex:tkrefreshlayout:1.0.3'
+
 }

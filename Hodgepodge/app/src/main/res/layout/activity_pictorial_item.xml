@@ -45,6 +45,7 @@
                     android:background="@drawable/shape"
                     android:gravity="center_vertical"
                     android:hint="说点什么吧"
+                    android:lines="1"
                     android:paddingLeft="@dimen/w_margin_ten"/>
 
                 <RelativeLayout

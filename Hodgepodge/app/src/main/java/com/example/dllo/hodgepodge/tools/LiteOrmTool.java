@@ -7,6 +7,7 @@ import android.util.Log;
 import com.example.dllo.hodgepodge.pictorial.CollectBean;
 import com.example.dllo.hodgepodge.pictorial.PictorialBean;
 import com.example.dllo.hodgepodge.pictorial.PictorialItemBean;
+import com.lcodecore.tkrefreshlayout.IHeaderView;
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
 import com.litesuits.orm.db.assit.WhereBuilder;
@@ -112,12 +113,13 @@ public class LiteOrmTool {
 
     // 插入
     public <T> void insertBean(final T bean) {
-        new Thread(new Runnable() {
+        mThreadPool.execute(new Runnable() {
             @Override
             public void run() {
                 mLiteOrm.save(bean);
             }
         });
+
     }
 
     // 插入集合
@@ -168,6 +170,7 @@ public class LiteOrmTool {
     public void queryBean(QueryListener queryListener) {
         mThreadPool.execute(new QueryRunnable(queryListener));
     }
+
 
     class QueryRunnable<T> implements Runnable {
 
