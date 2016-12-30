@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.dllo.hodgepodge.R;
 import com.example.dllo.hodgepodge.base.BaseFragment;
 import com.example.dllo.hodgepodge.mine.designer.DesignerActivity;
+import com.example.dllo.hodgepodge.mine.gobang.GobangActivity;
 import com.example.dllo.hodgepodge.mine.msgcenter.MsgCenterActivity;
 import com.example.dllo.hodgepodge.mine.mypictorial.PictorialActivity;
 import com.example.dllo.hodgepodge.mine.set.SetActivity;
@@ -96,7 +97,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(mIntent);
                 break;
             case R.id.beautiful_app:
-
+                mIntent = new Intent(getActivity(), GobangActivity.class);
+                startActivity(mIntent);
                 break;
 
         }
