@@ -21,5 +21,6 @@ public class MsgCenterActivity extends BaseActivity{
     @Override
     protected void initData() {
 
+
     }
 }
