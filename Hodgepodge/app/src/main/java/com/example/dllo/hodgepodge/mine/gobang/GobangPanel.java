@@ -154,6 +154,7 @@ public class GobangPanel extends View {
      * 绘制棋盘
      */
     private void drawBoard(Canvas canvas) {
+
         int w = mPanelWidth;
         // 行高
         float lineHeight = mLineHeight;
@@ -161,6 +162,7 @@ public class GobangPanel extends View {
             int startX = (int) (lineHeight / 2);
             int endX = (int) (w - lineHeight / 2);
             int y = (int) (lineHeight / 2 + i * lineHeight);
+
             // 画横线
             canvas.drawLine(startX, y, endX, y, mPaint);
             // 画竖线

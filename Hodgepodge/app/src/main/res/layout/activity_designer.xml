@@ -24,16 +24,15 @@
             android:layout_centerInParent="true"
             android:text="关注的设计师"
             android:textColor="@color/w_gray"/>
+
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/designer_top">
+        android:layout_below="@id/designer_top"
+        android:background="@mipmap/wel"
+        android:gravity="center">
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/black"/>
 
         <LinearLayout
             android:id="@+id/no_designer_detail_image"
@@ -42,19 +41,31 @@
             android:layout_centerInParent="true"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@mipmap/no_collection_icon"/>
-
             <TextView
+                android:id="@+id/show_winning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="恭喜你中奖了"
+                android:textColor="@color/black"
+                android:visibility="invisible"/>
+            <TextView
+                android:id="@+id/winning_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="你还没有关注设计师"
-                android:textColor="@color/w_gray"
-            android:layout_marginTop="@dimen/w_margin_twenty"/>
+                android:layout_marginTop="@dimen/w_margin_ten"
+                android:background="#90000000"
+                android:gravity="center"
+                android:textColor="@color/w_gray"/>
+
+            <Button
+                android:id="@+id/click_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/p1"
+                android:gravity="center"
+                android:text="点名"/>
+
 
         </LinearLayout>
     </RelativeLayout>
