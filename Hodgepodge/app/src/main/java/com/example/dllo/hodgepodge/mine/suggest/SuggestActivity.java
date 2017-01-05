@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Created by shuaiwang on 16/12/22.
  */
-public class SuggestActivity extends AppCompatActivity{
+public class SuggestActivity extends AppCompatActivity {
 
     public LocationClient mLocationClient;
 
@@ -41,14 +41,18 @@ public class SuggestActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 定位服务
         mLocationClient = new LocationClient(getApplicationContext());
+        // 注册监听函数
         mLocationClient.registerLocationListener(new MyLocationListener());
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_suggest);
         mapView = (MapView) findViewById(R.id.activity_suggest_map_view);
         baiduMap = mapView.getMap();
         baiduMap.setMyLocationEnabled(true);
+        // 获取所有可用的位置提供器
         List<String> permissionList = new ArrayList<>();
+        // 检查权限
         if (ContextCompat.checkSelfPermission(SuggestActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissionList.add(android.Manifest.permission.ACCESS_FINE_LOCATION);
         }
@@ -59,16 +63,21 @@ public class SuggestActivity extends AppCompatActivity{
             permissionList.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
         if (!permissionList.isEmpty()) {
-            String [] permissions = permissionList.toArray(new String[permissionList.size()]);
+            String[] permissions = permissionList.toArray(new String[permissionList.size()]);
             ActivityCompat.requestPermissions(SuggestActivity.this, permissions, 1);
         } else {
             requestLocation();
         }
     }
 
+    /**
+     * 显示当前位置
+     * @param location
+     */
     private void navigateTo(BDLocation location) {
         if (isFirstLocate) {
             Toast.makeText(this, "您所在的位置是: " + location.getAddrStr(), Toast.LENGTH_SHORT).show();
+            // 经纬度
             LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
             MapStatusUpdate update = MapStatusUpdateFactory.newLatLng(ll);
             baiduMap.animateMapStatus(update);
@@ -76,11 +85,14 @@ public class SuggestActivity extends AppCompatActivity{
             baiduMap.animateMapStatus(update);
             isFirstLocate = false;
         }
-        MyLocationData.Builder locationBuilder = new MyLocationData.
-                Builder();
+        // 我的位置数据
+        MyLocationData.Builder locationBuilder = new MyLocationData.Builder();
+        // 纬度
         locationBuilder.latitude(location.getLatitude());
+        // 经度
         locationBuilder.longitude(location.getLongitude());
         MyLocationData locationData = locationBuilder.build();
+        // 把我的位置信息在地图上显示
         baiduMap.setMyLocationData(locationData);
     }
 
@@ -89,8 +101,9 @@ public class SuggestActivity extends AppCompatActivity{
         mLocationClient.start();
     }
 
-    private void initLocation(){
+    private void initLocation() {
         LocationClientOption option = new LocationClientOption();
+        // 设置定位模式，小于1秒则一次定位;大于等于1秒则定时定位
         option.setScanSpan(5000);
         option.setIsNeedAddress(true);
         mLocationClient.setLocOption(option);
@@ -138,6 +151,9 @@ public class SuggestActivity extends AppCompatActivity{
         }
     }
 
+    /**
+     * 监听函数，又新位置的时候，格式化成字符串，输出到屏幕中
+     */
     public class MyLocationListener implements BDLocationListener {
 
         @Override
