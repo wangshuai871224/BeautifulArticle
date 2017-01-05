@@ -52,7 +52,7 @@ public class WheelView extends SurfaceView implements SurfaceHolder.Callback, Ru
     private Paint mArcPaint;
     // 绘制文本的画笔
     private Paint mTextPaint;
-
+    // 参数1 : 是单位, 参数2 : 是对应值 参数3 : 当前显示指标用于转换, 供应显示密度和扩展信息。
     private float mTextSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 20, getResources().getDisplayMetrics());
     // 整个盘块的范围
     private RectF mRangeRectF;
