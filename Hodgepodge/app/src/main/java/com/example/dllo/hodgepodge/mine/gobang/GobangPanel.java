@@ -224,9 +224,6 @@ public class GobangPanel extends View {
      */
     private void checkGameOver() {
         // 检查是否五子连珠
-        Log.d("WuziqiPanel", "mWhiteArray.size():" + mWhiteArray.size());
-
-        Log.d("WuziqiPanel", "mBlackArray.size():" + mBlackArray.size());
         boolean whiteWin = GoBangUtil.checkFiveInLine(mWhiteArray);
         boolean blackWin = GoBangUtil.checkFiveInLine(mBlackArray);
         if (whiteWin || blackWin) {
