@@ -121,7 +121,7 @@ public class DesignerActivity extends BaseActivity implements View.OnClickListen
                 //             handler  what  obj
                 Message.obtain(mHandler, 0, ranNumber, 0).sendToTarget();
             }
-
+            
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
