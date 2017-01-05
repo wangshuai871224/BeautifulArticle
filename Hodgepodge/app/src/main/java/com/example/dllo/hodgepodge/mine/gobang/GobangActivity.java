@@ -1,6 +1,7 @@
 package com.example.dllo.hodgepodge.mine.gobang;
 
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
 
 import com.example.dllo.hodgepodge.R;
@@ -9,6 +10,7 @@ import com.example.dllo.hodgepodge.base.BaseActivity;
 public class GobangActivity extends BaseActivity {
 
     private GobangPanel mGobangPanel;
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected int setLayout() {
@@ -26,7 +28,32 @@ public class GobangActivity extends BaseActivity {
          * 判断胜负及是否重新开始
          */
         initVictoryOrDefeat();
+        /**
+         * 播放音乐
+         */
+        playerMusic();
     }
+
+    /**
+     * 播放音乐
+     */
+    private void playerMusic() {
+        mMediaPlayer = MediaPlayer.create(this, R.raw.music);
+        mMediaPlayer.start();
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.start();
+            }
+        });
+        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.start();
+            }
+        });
+    }
+
     /**
      * 判断胜负及是否重新开始
      */
@@ -49,6 +76,7 @@ public class GobangActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         GobangActivity.this.onBackPressed();
+                        mMediaPlayer.stop();
                     }
                 });
                 builder.setCancelable(false);
