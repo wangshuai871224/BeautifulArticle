@@ -44,9 +44,9 @@ public class GoBangUtil {
         int count = 0;
         // 此x 为最右侧
         for (int i = 0; i < MAX_COUNT_IN_LINE; i++) {
+            // contains过滤掉重复的记录
             if (points.contains(new Point(x - i, y))) {
                 count++;
-                Log.d("GoBangUtil", "横count:" + count);
             } else {
                 break;
             }
@@ -57,9 +57,9 @@ public class GoBangUtil {
         }
         count = 0;
         for (int i = 0; i < MAX_COUNT_IN_LINE; i++) {
+            // contains过滤掉重复的记录
             if (points.contains(new Point(x + i, y))) {
                 count++;
-                Log.d("GoBangUtil", "横count:" + count);
             } else {
                 break;
             }

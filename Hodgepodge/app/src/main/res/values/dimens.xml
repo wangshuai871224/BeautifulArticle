@@ -38,6 +38,7 @@
     <dimen name="m_margin_five">5dp</dimen>
     <dimen name="m_margin_twenty">20dp</dimen>
     <dimen name="m_size_twenty">20sp</dimen>
+    <dimen name="m_margin_thirty">30dp</dimen>
 
 
 </resources>

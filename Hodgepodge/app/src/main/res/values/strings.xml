@@ -3,4 +3,11 @@
     <string name="m_on_play">正在播放</string>
     <string name="m_look_more">查看更多</string>
     <string name="m_ntroduction_of_fold">收起简介</string>
+    <string name="m_add">手动添加</string>
+    <string name="m_camera">硕哥发单反相机</string>
+    <string name="m_iphone">硕哥发iPhone</string>
+    <string name="m_ipad">硕哥发iPad</string>
+    <string name="m_sing">硕哥唱歌</string>
+    <string name="m_clothing">硕哥发服装</string>
+    <string name="m_meney">硕哥发钱</string>
 </resources>
