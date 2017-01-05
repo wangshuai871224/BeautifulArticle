@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.example.dllo.hodgepodge.R;
 import com.example.dllo.hodgepodge.base.BaseActivity;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -33,13 +34,13 @@ public class MsgCenterActivity extends BaseActivity{
     @Override
     protected void initData() {
         mImageButton.setOnClickListener(new View.OnClickListener() {
-            int a;
+            int a, b;
             @Override
             public void onClick(View v) {
                 if (mWheelView.isStarting()) {
                     //防止stop方法被执行多次
                     if (!mWheelView.isShouldStop()) {
-                        switch (a){
+                        switch (b){
                             case 0:
                                 Toast.makeText(MsgCenterActivity.this, R.string.m_camera, Toast.LENGTH_SHORT).show();
                                 break;
@@ -63,11 +64,24 @@ public class MsgCenterActivity extends BaseActivity{
                         mImageButton.setBackgroundResource(R.mipmap.start);
                     }
                 } else {
+                    // 设置随机概率
+                    ArrayList<Integer> list = new ArrayList<Integer>();
+                    for (int i = 0; i < 10; i++) {
+                        list.add(2);
+                        list.add(5);
+                    }
+                    list.add(0);
+                    list.add(1);
+                    list.add(3);
+                    list.add(4);
+
                     // 通过随机数确定中奖选项
                     Random random = new Random();
-                    a = random.nextInt(6);
+                    a = random.nextInt(24);
+                    // 根据随机数获取中奖号
                     // 参数是中奖号 0 1 2 3 4 5 对应: 单反相机 iPad 硕哥唱歌 iPhone 服装一套 硕哥发红包
-                    mWheelView.start(a);
+                    b = list.get(a);
+                    mWheelView.start(b);
                     mImageButton.setBackgroundResource(R.mipmap.stop);
                 }
             }
