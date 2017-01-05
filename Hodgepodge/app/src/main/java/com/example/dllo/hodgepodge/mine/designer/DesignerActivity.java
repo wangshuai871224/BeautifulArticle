@@ -45,6 +45,7 @@ public class DesignerActivity extends BaseActivity implements View.OnClickListen
         names = getNames();
         setClick(this, mImageView, clickName);
         mHandler = new Handler(new InnerCallBack());
+        mThread = new InnerThread();
     }
 
     @Override
@@ -122,7 +123,7 @@ public class DesignerActivity extends BaseActivity implements View.OnClickListen
             }
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
