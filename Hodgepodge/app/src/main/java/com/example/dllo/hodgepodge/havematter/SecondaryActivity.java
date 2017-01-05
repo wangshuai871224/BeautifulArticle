@@ -18,6 +18,7 @@ import com.example.dllo.hodgepodge.video.newest.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +30,11 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
  */
 public class SecondaryActivity extends BaseActivity implements View.OnClickListener {
     private Banner mBanner;
-    private ImageView ivBack,ivStyle,ivHighlight,ivAdvice,ivPic,ivPicOne,ivPicTwo,ivHandPic;
-    private TextView tvStyle,tvHighlight,tvAdvice,tvDesc,tvName,tvFocusName,tvFocusLabel,tvDescription,tvWorks;
+    private ImageView ivBack, ivStyle, ivHighlight, ivAdvice, ivPic, ivPicOne, ivPicTwo, ivHandPic;
+    private TextView tvStyle, tvHighlight, tvAdvice, tvDesc, tvName, tvFocusName, tvFocusLabel, tvDescription, tvWorks;
     private List<String> mImage;
     private String mUrl;
+
     @Override
     protected int setLayout() {
         return R.layout.activity_secondary;
@@ -66,10 +68,7 @@ public class SecondaryActivity extends BaseActivity implements View.OnClickListe
     protected void initData() {
         Intent intent = getIntent();
         int id = intent.getIntExtra("id", -1);
-        Log.d("aaaaa", id + "0000");
-
-         mUrl = URLValues.REUSE_SECONDARY_BEFORE + id + URLValues.REUSE_SECONDARY_AFTER;
-        Log.d("ssss", mUrl + "0000");
+        mUrl = URLValues.REUSE_SECONDARY_BEFORE + id + URLValues.REUSE_SECONDARY_AFTER;
         initBanner();
         OkHttpManager.getInstance().get(mUrl, BeanHaveSecond.class, new NetCallBack<BeanHaveSecond>() {
             @Override
@@ -90,18 +89,18 @@ public class SecondaryActivity extends BaseActivity implements View.OnClickListe
                 tvDesc.setText(bean.getData().getDesc());
 
                 switch (bean.getData().getImages().size()) {
-                    case  1:
+                    case 1:
                         Glide.with(MyApp.getContext()).load(bean.getData().getImages().get(0)).into(ivPic);
                         ivPicOne.setVisibility(View.GONE);
                         ivPicTwo.setVisibility(View.GONE);
                         break;
 
-                    case  2:
+                    case 2:
                         ivPicTwo.setVisibility(View.GONE);
                         Glide.with(MyApp.getContext()).load(bean.getData().getImages().get(0)).into(ivPic);
                         Glide.with(MyApp.getContext()).load(bean.getData().getImages().get(1)).into(ivPicOne);
                         break;
-                    case  3:
+                    case 3:
                         Glide.with(MyApp.getContext()).load(bean.getData().getImages().get(0)).into(ivPic);
                         Glide.with(MyApp.getContext()).load(bean.getData().getImages().get(1)).into(ivPicOne);
                         Glide.with(MyApp.getContext()).load(bean.getData().getImages().get(2)).into(ivPicTwo);
